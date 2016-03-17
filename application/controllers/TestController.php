@@ -10,7 +10,7 @@ class TestController extends Zend_Controller_Action
 
     public function init()
     {
-        $oTestModel = new Application_Model_Test();
+        $this->oTestModel = new Application_Model_Test();
     }
 
     public function indexAction()
@@ -22,20 +22,34 @@ class TestController extends Zend_Controller_Action
     {
         //set the TestId
         $this->iTestId = 1;
+        $this->view->testid = 777;
         
         //verify if there is an active php session
+      
+        
+        if(session_id() == ""){
+            //session_start();
+            $ssId = session_id();
+            //if not, call $this->registerSession() to create a new results record
+            $this->oTestModel->registerSession();
+            
+        }else{
+            $ssId = session_id();
+        }
+        
+        //var_dump($ssId);
         
         //if is there a session, go to the last question answered
     
-        //if not, call $this->registerSession() to create a new results record
+        
         
         //get the Test info
-        $oTestModel->getTestInfo();
+        //$oTestModel->getTestInfo();
         
         
         //get the questions with answer options
         
-        $sBasicQuestions = $oTestModel->getQuestions(1);
+        //$sBasicQuestions = $oTestModel->getQuestions(1);
         
         
         //prepare the test

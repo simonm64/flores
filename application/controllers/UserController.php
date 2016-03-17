@@ -3,6 +3,7 @@
 class UserController extends Zend_Controller_Action
 {
     
+    
     private $oUserModel;
 
     public function init()

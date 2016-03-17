@@ -2,7 +2,19 @@
 
 class Application_Model_Test
 {
+  private $oDB;
   
+  public function __construct(){
+    //connect to db
+    
+    $config = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'development');
+    print_r($config);
+    //var_dump($config);
+    $this->oDB = Zend_Db::factory($config);
+    
+    //var_dump($this->oDB);
+    
+  }
   
   public function getTestInfo($iTestId){
     
@@ -15,7 +27,7 @@ class Application_Model_Test
   public function registerSession(){
     
     
-    
+    var_dump("sid=> ".session_id());
     
     //if not, start session and create a record in user_results
     
