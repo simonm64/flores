@@ -22,5 +22,8 @@ $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
+
+require_once APPLICATION_PATH.'/configs/DB.php';
+
 $application->bootstrap()
             ->run();

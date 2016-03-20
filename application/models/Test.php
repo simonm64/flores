@@ -5,22 +5,20 @@ class Application_Model_Test
   private $oDB;
   
   public function __construct(){
+    
     //connect to db
-    
-    $config = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'development');
-    print_r($config);
-    //var_dump($config);
-    $this->oDB = Zend_Db::factory($config);
-    
-    //var_dump($this->oDB);
+    $this->oDB= FloresDB::conn();
     
   }
   
   public function getTestInfo($iTestId){
     
     //query the test table
+    $sSql = "SELECT VC_NME_TST FROM TESTS WHERE ID_TST = ?";
+    $aTestInfo = $this->oDB->fetchAll($sSql,$iTestId);
     
-    //returns data
+    return $aTestInfo;
+   
   }
   
   
@@ -38,6 +36,17 @@ class Application_Model_Test
     
     
     //query the questions
+    $sSql = "SELECT 
+              ID_QSTN,
+              VC_CPY_QSTN,
+              ID_TST,
+              ID_PRDCT,
+              I_GRP
+             FROM QUESTIONS
+             WHERE ID_TST = ?";
+    $aTestInfo = $this->oDB->fetchAll($sSql,$iTestId);
+    
+    return $aTestInfo;
     
     
     //query the answer options

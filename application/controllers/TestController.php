@@ -23,7 +23,7 @@ class TestController extends Zend_Controller_Action
         //set the TestId
         $this->iTestId = 1;
         $this->view->testid = 777;
-        
+                
         //verify if there is an active php session
       
         
@@ -44,13 +44,14 @@ class TestController extends Zend_Controller_Action
         
         
         //get the Test info
-        //$oTestModel->getTestInfo();
         
+        $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
+        var_dump($aTestInfo);
         
         //get the questions with answer options
         
-        //$sBasicQuestions = $oTestModel->getQuestions(1);
-        
+        $aQuestions = $this->oTestModel->getQuestions($this->iTestId);
+        var_dump($aQuestions);
         
         //prepare the test
         
