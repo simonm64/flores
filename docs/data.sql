@@ -2,7 +2,7 @@
 INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Básico');
 INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Completo');
 
-/*Questions Table*/
+/*QUESTIONS Table*/
 /*Test 1 (Basico)*/
 INSERT INTO `FLOWERS`.`QUESTIONS` (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Tengo miedo a caer enfermo, a la pobreza, a la muerte... o tengo fobias como insectos, muchedumbre... ','1','20','1');
 INSERT INTO `FLOWERS`.`QUESTIONS` (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Pido consejo y opinión a los demás porque cuestiono mis propias decisiones. ','1','5','2');
@@ -83,3 +83,10 @@ INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('F
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la insatisfacción','Cuando no sabemos lo que queremos, nuestra vocación es dudosa, nos falta definición y nos dispersamos. Esta flor es como un ancla que nos permite tener los pies en la tierra y tomar decisiones. Nos ayuda a clarificar metas y propósitos en la vida. Es la flor por excelencia del auto conocimiento');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la apatía','Si nos falta la alegría de vivir, si nos domina la apatía interior, nos resignamos pero sentimos desmotivación y desinterés, la rosa silvestre nos provoca motivación y entusiasmo, nos hace adquirir una actitud constructiva, asumiendo mayor responsabilidad ante la propia vida y uso de su iniciativa para asumir cambios. \"Mueve las fichas, para que los cambios se produzcan\" \"Desde la apatía vives de rodillas. Para vivir hay que ponerse de pie\"');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para el resentimiento, amargura y autocompasion','Cuando nos sentimos amargados, \"victimas del destino\" y sin darnos cuenta culpamos a nuestro entorno de todo lo que nos pasa. La energía de la flor de sauce nos ayuda a asumir la responsabilidad sobre nuestra propia vida. A ser positivos, constructivos y optimistas, dejando que afloren a nuestra mente pensamientos positivos');
+
+
+/*OPTIONS TABLE */
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Si, muy frecuentemente',2);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'A veces',1);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Rara vez',0);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Nunca',0);
