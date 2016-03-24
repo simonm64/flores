@@ -36,35 +36,14 @@ class TestController extends Zend_Controller_Action
         $this->view->testid = 777;
         session_start();
         var_dump(session_id());
-        //verify if there is an active php session
-        /*if(session_id()=='' || !isset($_SESSION)){
-            
-            $success = $this->oTestModel->registerSession($this->iTestId);
-            var_dump($success);
-            
-        }else{
-            echo'ssid already exist';
-        }*/
-
-        //if is there a session, go to the last question answered
     
         //get the Test info
-        
         $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
         self::cdump($aTestInfo);
                 
-        //$aTestQuestions = $this->oTestModel->getQuestions($this->iTestId);
-        $aQuestion = $this->oTestModel->getBuildQuestion($this->iTestId);
+        $aQuestion = $this->oTestModel->getBuildNextQuestion($this->iTestId);
         
         self::cdump($aQuestion);
-        
-        //cdump($aQuestion);
-        
-        //$aTestOptions = $this->oTestModel->getOptionsAnswers($this->iTestId);
-        //Zend_Debug::dump($aTestOptions);
-        
-        //prepare the test
-        //$aCompleteTest = $this->oTestModel->buildTest($aTestInfo,$aTestQuestions,$aTestOptions);
         
         //prepate the view or (for angular js)
 
@@ -75,44 +54,41 @@ class TestController extends Zend_Controller_Action
     {
          //ajax request
         session_start();
-        //identify the session
-        //verify
-        /*if(){
-            //session_start();
-            $success = $this->oTestModel->registerSession($this->iTestId);
-            var_dump($success);
-            
-        }else{
-            echo'ssid already exist';
-        }*/
         
         
+        /*----GET params upon ajax request-------*/
         //identify test
         $iTest = 1;
+        
+        //identify the question & group
         $iQuestion = 2;
         $iGroup = 2;
-        $iValue = 2;
-        
-        //identify the question
         
         //identify the value of the answer
-        
+        $iValue = 1;
+        /*-----------*/
         
         //add the answer to the system
         $data = $this->oTestModel->InsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
-        echo(json_encode(array('sucess'=>true,'data'=>$data)));
-        //verify is is the last question
-        //last question can be identified with a hidden field in the question,
-        //or making a count to the questions and compare.
         
-        //if the question is not the last one
-            //query the next question and send it to front
+        //verify result of insert and continue
+        if(is_numeric($data)){ //everything went fine and we have an inserted id
+            //var_dump("users_result_id-> ".$data);
+            $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
+            if(!$aQuestion){
+                echo('No more questions, show the the User registration view');
+                die(json_encode(array('sucess'=>true,'data'=>'0')));
+            }
+            self::cdump($aQuestion);//we have a next question and should be displayed
+            die(json_encode(array('sucess'=>true,'data'=>$data)));//show the next question
             
-        //else
-            //create the user registration form and pass it to front end
+        }elseif(!$data){
+            //there was a problem with the insert
+            echo($data);//exception cought in the model
+            die(json_encode(array('sucess'=>true,'data'=>$data)));
+        }
+
     }
-
-
 }
 
 

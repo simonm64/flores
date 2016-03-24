@@ -24,14 +24,7 @@ class Application_Model_Test
   }
   
   
-  public function registerSession($iTest){
-    
-    
-    
-  }
-  
-  
-  public function getQuestions($iTestId){
+  /*public function getQuestions($iTestId){
 
     //query the questions
     $sSql = "SELECT 
@@ -45,8 +38,7 @@ class Application_Model_Test
     $aTestInfo = $this->oDB->fetchAll($sSql,$iTestId);
     
     return $aTestInfo;
-  
-  }
+  }*/
   
   public function getLastQuestionBySession($iTest){
     
@@ -56,6 +48,7 @@ class Application_Model_Test
             AND VC_SESSION_ID = ?
             ORDER BY ID_QSTN DESC";
     $iResult = $this->oDB->fetchOne($sSql,array($iTest,session_id()));
+    var_dump('lastquestion->'.$iResult);
     if(!$iResult)
       return 0;
     Zend_debug::dump($iResult);
@@ -64,10 +57,10 @@ class Application_Model_Test
   }
   
   
-  public function getBuildQuestion($iTest){
+  public function getBuildNextQuestion($iTest){
     
     $iQuestion = self::getLastQuestionBySession($iTest);
-    var_dump('shut_'.$iQuestion);
+    //var_dump('shut_'.$iQuestion);
     //get question
     $sSql = "SELECT
               ID_QSTN,
@@ -80,13 +73,10 @@ class Application_Model_Test
              AND ID_QSTN = ?
              LIMIT 1";
     $aQ = $this->oDB->fetchRow($sSql, array($iTest,$iQuestion+1));
-    //Zend_Debug::dump($aQ);
-    //$oDBst = $this->oDB->query($sSql,array($iTest,$iQuestion));
-    //$aQ = $oDBst->fetchOne();
-    //Zend_debug::dump($aQuestion);
     
     if(!$aQ)//no more questions
-     return 'No more questions';
+     return $aQ;
+    
     //get options
     $aOptions = self::getOptionsAnswers($iTest);
     $aOpts= array();
@@ -119,7 +109,7 @@ class Application_Model_Test
   }
   
   
-  public function buildTest($aInfo, $aQuestions, $aOptions){
+  /*public function buildTest($aInfo, $aQuestions, $aOptions){
     
     $aResult['title'] = $aInfo['VC_NME_TST'];
     $aOpts= array();
@@ -145,7 +135,7 @@ class Application_Model_Test
     }
     Zend_Debug::dump($aResult);
     
-  }
+  }*/
   
   
   
@@ -159,16 +149,19 @@ class Application_Model_Test
                   'I_VALUE'=>$iValue,
                   'VC_SESSION_ID'=>session_id());
     
-    $this->oDB->insert('USER_RESULTS', $data);
+    try{
+      $this->oDB->insert('USER_RESULTS', $data);
+    } catch(Zend_Exception $e){
+      return $e->getMessage();
+    }
     
     $id = $this->oDB->lastInsertId();
-    var_dump($id);
+    //var_dump($id);
     if(is_numeric($id)){
-      return true;
+      return $id;
     }else{
       return false;
     }
-    //if not, start session and create a record in user_results
     
   }
   
