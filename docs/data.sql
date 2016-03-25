@@ -43,8 +43,135 @@ INSERT INTO `FLOWERS`.`QUESTIONS` (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('M
 INSERT INTO `FLOWERS`.`QUESTIONS` (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Me gusta distanciarme de los demás y solucionar mis propias dificultades solo/a, los demás a veces piensan que soy orgulloso o excesivamente independiente. ','1','34','37');
 INSERT INTO `FLOWERS`.`QUESTIONS` (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('No se decir que \"no\", al final acabo haciendo muchas cosas que en el fondo no deseo hacer, incluso renunciando a mis propias necesidades por complacer a los demás. ','1','4','38');
 
-/*PRODUCTS TABLE*/
+/*OPTIONS FOR TEST 1*/
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Si, muy frecuentemente',2);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'A veces',1);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Rara vez',0);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Nunca',0);
 
+/*TEST 2 COMPLETO*/
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes temores vagos que no puedes explicar? ','2','2','1');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿A menudo te sientes angustiado y ansioso, pero eres incapaz de identificar el problema? ','2','2','1');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te levantas con una sensación de aprensión e inquietud y sientes que algo malo puede pasar, pero no sabes qué es? ','2','2','1');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes temores específicos que puedes identificar y deseas superar?','2','20','2');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres tímido y te asustas con facilidad por circunstancias o cosas particulares?','2','20','2');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Cuando te enfrentas con situaciones o cosas que te asustan, ¿te sientes nervioso o demasiado paralizado como para actuar?','2','20','2');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Temes perder el control de tu mente o cuerpo?','2','6','3');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres compulsivo o tienes el impulso de hacer cosas que sabes que son incorrectas porque tienes problemas para controlar tus acciones?','2','6','3');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Temes perder el control y lastimarte a ti mismo u a otras personas?','2','6','3');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te preocupas de la salud y la seguridad de tus amigos y familiares?','2','25','4');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te preocupa que algo pueda pasarle a tus seres queridos?','2','25','4');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tu preocupación excesiva por los demás te ocasiona un estrés considerable?','2','25','4');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sufres de terror extremo?','2','26','5');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tiendes a entrar en pánico y ponerte histérico?','2','26','5');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes perturbado por las pesadillas?','2','26','5');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te falta confianza en tu capacidad para juzgar las cosas por tu cuenta y tomar decisiones?','2','5','6');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te encuentras pidiendo consejos a los demás, incluso cuando sabes lo que quieres?','2','5','6');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Después de recibir los consejos de los demás, ¿te encuentras confundido con las opciones y cambias de dirección constantemente con cada recomendación?','2','5','6');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sufres de indecisión, incertidumbre o vacilación?','2','28','7');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes problemas para elegir entre varias opciones?','2','28','7');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Experimentas cambios de humor extremos o tienes problemas para mantener tu equilibrio emocional?','2','28','7');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes insatisfecho con tu papel actual en la vida y sientes que la existencia se te escapa entre tus manos?','2','36','8');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Trataste de tomar varios rumbos en tu vida pero parece que nada te satisface?','2','36','8');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te gustaría encontrar un nuevo estilo de vida o carrera (o cambiar los que ya tienes), pero tienes problemas para decidir lo que debes hacer?','2','36','8');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te falta confianza?','2','19','9');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿No pruebas cosas por temor al fracaso?','2','19','9');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes inferior y crees que los demás son más capaces y cualificados que tú?','2','19','9');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Al despertar te sientes cansado y no quieres levantarte?','2','17','10');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que debes fortalecer una parte tuya antes de empezar el día?','2','17','10');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Descubres que al empezar tus actividades cotidianas olvidas tu cansancio y eres capaz de completar tus tareas?','2','17','10');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres distraído o tu atención deambula fácilmente, lo cual te impide concentrarte?','2','9','11');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes poco interés en las circunstancias actuales y a menudo sueñas despierto, deseando estar en otro lugar?','2','9','11');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿A menudo te encuentras tomando siestas en cualquier sitio?','2','9','11');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te encuentras atrapado entre vivir en el presente y recordar las memorias del pasado?','2','16','12');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Hay cosas que te gustaría hacer con tu vida, pero que nunca tuviste la oportunidad de llevar a cabo?','2','16','12');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te encuentras recordando los buenos tiempos del pasado y deseas volver a vivir tu vida?','2','16','12');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes indiferente y apático hacia la vida?','2','37','13');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te resignaste a tus circunstancias actuales y no te esfuerzas demasiado en mejorar las cosas ni alcanzar la alegría?','2','37','13');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que te diste por vencido y no te importa lo que pueda pasar?','2','37','13');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes perturbado por los pensamientos indeseables persistentes?','2','35','14');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te preocupas o tienes discusiones mentales que giran alrededor de tu mente?','2','35','14');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes problemas para dormir debido al ruido mental y las preocupaciones?','2','35','14');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Encuentras que eres incapaz de aprender de las experiencias pasadas y repites los mismos errores o patrones de comportamiento?','2','7','15');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que es necesario repasar o corregir las cosas que ya hiciste por la falta de observación?','2','7','15');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Hay alguna situación o condición que se repita constantemente en tu vida y que te gustaría superar?','2','7','15');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Acabas de atravesar o estás superando una enfermedad o un sufrimiento personal que te dejó agotado física o mentalmente?','2','23','16');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te cansas fácilmente y no tienes la energía suficiente para completar tus tareas ni disfrutar el día?','2','23','16');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que te falta la fuerza y la vitalidad, y que incluso puedes quedar agotado luego de hacer un esfuerzo mínimo?','2','23','16');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Las otras personas te encuentran distanciado, orgulloso y a veces condescendiente?','2','34','17');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES (' ¿Te gusta estar solo y no deseas interferir ni que los demás interfieran en tus asuntos?','2','34','17');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres autosuficiente y prefieres pasar tu tiempo a solas?','2','34','17');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Encuentras que pierdes la paciencia, te pones tenso e irritable con las personas y las cosas que son demasiado lentas para ti?','2','18','18');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Haces las cosas con prisa y te apresuras entre los lugares o las situaciones?','2','18','18');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Encuentras que necesitas trabajar solo porque los demás no pueden seguir tu ritmo?','2','18','18');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Encuentras que los demás evitan conversar contigo porque tiendes a hablar mucho?','2','14','19');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿No te gusta estar solo y buscas la compañía de cualquier persona que esté dispuesta a escuchar tus problemas?','2','14','19');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes la necesidad de orientar las conversaciones hacia tus intereses o problemas especiales y te rehúsas a detenerte incluso cuando los demás tienen que irse?','2','14','19');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tiendes a ocultar tus dolores o preocupaciones a los demás, haciendo que incluso las circunstancias más difíciles parezcan irrelevantes?','2','1','20');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te esfuerzas demasiado para no cumplir con los deseos de los demás con el fin de evitar discusiones o peleas?','2','1','20');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Cuando te sientes preocupado, ¿te encuentras bebiendo alcohol o usando drogas para mantenerte feliz?','2','1','20');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Es fácil que los demás se aprovechen de ti por tu disposición a ayudar a otras personas?','2','4','21');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te es difícil negarte cuando alguien más te pide ayuda y te conviertes en un sirviente en vez de una persona colaboradora?','2','4','21');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Descuidas tus propias necesidades porque te ocupas demasiado de las necesidades de los demás?','2','4','21');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Estás involucrado en una relación o situación de la que te gustaría liberarte, pero de la que no puedes separarte?','2','33','22');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Estás en un estado de transición o cambio?','2','33','22');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('En medio de este cambio, ¿encuentras que tienes problemas para dejar atrás las ataduras del pasado y tener un comienzo nuevo?','2','33','22');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres sospechoso y desconfiado de los motivos e intenciones de otras personas?','2','15','23');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Los demás te encuentran rencoroso, envidioso, celoso o vengativo?','2','15','23');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Encuentras que te falta compasión y afecto hacia los demás?','2','15','23');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Son pocas las ocasiones en las que te sientes satisfecho con tus logros y siempre sientes que lo pudiste haber hecho mejor?','2','24','24');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te culpas a ti mismo por los errores de otras personas y sientes que sus defectos son de cierta manera tu culpa o responsabilidad?','2','24','24');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Hay algo en ti que no acabas de perdonarte? ','2','24','24');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tiene usted más responsabilidades de las que en estos momentos puede soportar?','2','11','25');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te encuentras abrumado por tu trabajo y aunque eres capaz, sientes que te comprometiste a hacer más de lo que en realidad puedes lograr?','2','11','25');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes desanimado cuando te enfrentas con la magnitud de tus responsabilidades?','2','11','25');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Hay traumas o conmociones del pasado de los que posiblemente no te hayas recuperado completamente?','2','29','26');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que una cirugía o un accidente pasados son los responsables de tu condición actual?','2','29','26');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sufriste una pérdida personal que no has podido superar?','2','29','26');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que alcanzaste los límites de tu resistencia y que no hay nada más que enfrentar que la aniquilación?','2','30','27');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sufres de angustia mental y desesperación profunda?','2','30','27');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que el peso de la vida es mayor a lo que puedes soportar?','2','30','27');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Perdiste la esperanza de recuperarte o recibir ayuda para superar una enfermedad o dificultad?','2','13','28');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Crees que es inútil buscar más ayuda para tus problemas?','2','13','28');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Abandonaste las esperanzas de que las cosas mejorarán en una circunstancia o situación de tu vida?','2','13','28');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes triste y deprimido sin razón aparente?','2','21','29');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Esta depresión te envuelve como una nube oscura que oculta las alegrías de la vida?','2','21','29');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que esta tristeza y depresión se van de manera tan repentina como llegan y sin razón aparente?','2','21','29');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te desanimas fácilmente cuando las cosas no salen como quieres?','2','12','30');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Cuando te dispones a cumplir una tarea, ¿te sientes demasiado sensible sobre las demoras y obstáculos pequeños, lo cual puede llevarte a dudar sobre ti mismo y en ocasiones provocarte depresión?','2','12','30');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te es difícil empezar de nuevo después de encontrar problemas?','2','12','30');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres de las personas que sigue avanzando incansablemente sin importar las oposiciones ni demoras?','2','22','31');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Las personas siempre pueden confiar en que completarás lo que te propongas, independiente del reto?','2','22','31');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tiendes a lanzarte a tus proyectos y descuidar tus necesidades y las de tus seres queridos?','2','22','31');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que la vida ha sido injusta contigo, pero no por tu culpa?','2','38','32');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes resentimiento o amargura hacia las personas que te trataron mal?','2','38','32');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('A pesar de todos tus logros, ¿sientes que en mayor medida no recibes recompensas por tus mejores esfuerzos mientras que otras personas obtienen gratificaciones cuando no lo merecen?','2','38','33');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que hay algo malo en tu apariencia física o hay cosas que te gustaría cambiar de tu aspecto?','2','10','34');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres compulsivo sobre la limpieza, incluso llegando ocasionalmente a puntos extremos?','2','10','34');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que te vas a contaminar (o que ya te contaminaste) y que necesitas limpiarte?','2','10','34');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres posesivo sobre tus seres queridos y crees que conoces lo mejor para ellos, y a menudo los diriges y corriges incluso en los detalles más insignificantes de sus vidas?','2','8','35');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que no recibes el aprecio de las personas que cuidas?','2','8','35');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Necesitas la atención y devoción de las personas que amas, y sientes que es su deber mantener una relación estrecha contigo?','2','8','35');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('Cuando evalúas personas y situaciones, ¿buscas las cosas que te parezcan incorrectas?','2','3','36');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te molestan los hábitos pequeños y la idiosincrasia de los demás?','2','3','36');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres crítico e intolerante hacia las personas que no se ajustan a tus estándares o expectativas?','2','3','36');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tienes opiniones firmes y tratas de convencer a los demás de que estás en lo correcto?','2','31','37');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te indignas fácilmente por las injusticias y discutes o defiendes los principios en los que crees?','2','31','37');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Te sientes nervioso o en ocasiones tenso y demasiado entusiasmado, además de siempre enseñar y filosofar?','2','31','37');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que tienes una misión en la vida que debes cumplir?','2','27','38');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres estricto en tu afiliación a una disciplina social o religiosa, o a una manera particular de vivir?','2','27','38');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Sientes que es importante cumplir con tus ideales para convertirte en un ejemplo y hacer que otras personas te sigan?','2','27','38');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Tiendes a tomar el mando en las circunstancias y situaciones en las que te involucras?','2','32','39');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Eres de carácter fuerte y esperas una obediencia total e incondicional de las personas a tu alrededor?','2','32','39');
+INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,ID_PRDCT,I_GRP) VALUES ('¿Crees que eres un \"líder nato\"?','2','32','39');
+
+/*OPTIONS FOR TEST 2*/
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Si, muy frecuentemente',4);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'A veces',1);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Rara vez',0);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Nunca',0);
+
+/*PRODUCTS TABLE*/
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la ansiedad','Cuando sentimos ansiedad, tortura, desasosiego, pero nos ocultamos tras \"una mascara\" de alegría y despreocupación. Esta flor ayuda a que salgan a la superficie contenidos o traumas profundos que estaban bloqueados, nos ayuda a tomar conciencia de los conflictos y nos da la paz suficiente para superarlos');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para el miedo desconocido, intangible','Cuando se tiene una sensación indeterminada de miedo y de peligro el álamo temblón te va a aportar Confianza. Disminuye los miedos y robustece la confianza interior, te da capacidad para valorar de forma realista la propia sensibilidad y mejorarla, manejándola mejor');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la Intolerancia','Cuando sentimos dentro de nosotros una actitud intolerante, tenemos tendencia a la crítica y facilidad para juzgar. Esta flor nos va a ayudar a ser compresivos e indulgentes con los demás. Nos enseña a aceptar los diversos patrones de la conducta humana y a admitir los diferentes caminos de desarrollo individual');
@@ -83,10 +210,3 @@ INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('F
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la insatisfacción','Cuando no sabemos lo que queremos, nuestra vocación es dudosa, nos falta definición y nos dispersamos. Esta flor es como un ancla que nos permite tener los pies en la tierra y tomar decisiones. Nos ayuda a clarificar metas y propósitos en la vida. Es la flor por excelencia del auto conocimiento');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la apatía','Si nos falta la alegría de vivir, si nos domina la apatía interior, nos resignamos pero sentimos desmotivación y desinterés, la rosa silvestre nos provoca motivación y entusiasmo, nos hace adquirir una actitud constructiva, asumiendo mayor responsabilidad ante la propia vida y uso de su iniciativa para asumir cambios. \"Mueve las fichas, para que los cambios se produzcan\" \"Desde la apatía vives de rodillas. Para vivir hay que ponerse de pie\"');
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para el resentimiento, amargura y autocompasion','Cuando nos sentimos amargados, \"victimas del destino\" y sin darnos cuenta culpamos a nuestro entorno de todo lo que nos pasa. La energía de la flor de sauce nos ayuda a asumir la responsabilidad sobre nuestra propia vida. A ser positivos, constructivos y optimistas, dejando que afloren a nuestra mente pensamientos positivos');
-
-
-/*OPTIONS TABLE */
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Si, muy frecuentemente',2);
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'A veces',1);
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Rara vez',0);
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Nunca',0);
