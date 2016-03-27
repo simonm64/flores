@@ -35,7 +35,7 @@ class TestController extends Zend_Controller_Action
         $this->iTestId = 1;
         $this->view->testid = 777;
         session_start();
-        var_dump(session_id());
+        //var_dump(session_id());
     
         //get the Test info
         $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
@@ -65,14 +65,14 @@ class TestController extends Zend_Controller_Action
         $iGroup = 2;
         
         //identify the value of the answer
-        $iValue = 1;
+        $iValue = 2;
         /*-----------*/
         
         //add the answer to the system
-        $data = $this->oTestModel->InsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
-        
+        $vInserted = $this->oTestModel->InsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
+        var_dump($vInserted);
         //verify result of insert and continue
-        if(is_numeric($data)){ //everything went fine and we have an inserted id
+        if(is_numeric($vInserted)){ //everything went fine and we have an inserted id
             //var_dump("users_result_id-> ".$data);
             $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
             if(!$aQuestion){
@@ -80,14 +80,14 @@ class TestController extends Zend_Controller_Action
                 die(json_encode(array('sucess'=>true,'data'=>'0')));
             }
             self::cdump($aQuestion);//we have a next question and should be displayed
-            die(json_encode(array('sucess'=>true,'data'=>$data)));//show the next question
+            die(json_encode(array('sucess'=>true,'data'=>$aQuestion)));//show the next question
             
-        }elseif(!$data){
+        }elseif(!$vInserted){
             //there was a problem with the insert
             echo($data);//exception cought in the model
             die(json_encode(array('sucess'=>true,'data'=>$data)));
         }
-
+var_dump($vInserted);
     }
 }
 

@@ -42,11 +42,11 @@ class Application_Model_Test
   
   public function getLastQuestionBySession($iTest){
     
-    $sSql = "SELECT ID_QSTN
+    $sSql = "SELECT I_QSTN
             FROM FLOWERS.USER_RESULTS
             WHERE ID_TST = ?
             AND VC_SESSION_ID = ?
-            ORDER BY ID_QSTN DESC";
+            ORDER BY I_QSTN DESC";
     $iResult = $this->oDB->fetchOne($sSql,array($iTest,session_id()));
     var_dump('lastquestion->'.$iResult);
     if(!$iResult)
@@ -66,6 +66,7 @@ class Application_Model_Test
               ID_QSTN,
               VC_CPY_QSTN,
               ID_TST,
+              I_QSTN,
               ID_PRDCT,
               I_GRP
              FROM QUESTIONS
@@ -85,10 +86,11 @@ class Application_Model_Test
     }
     
     $aResult['id'] = $aQ['ID_QSTN'];
-    $aResult['question'] = $aQ['VC_CPY_QSTN'];
+    $aResult['vc_question'] = $aQ['VC_CPY_QSTN'];
+    $aResult['i_question'] = $aQ['I_QSTN'];
     $aResult['id_prod'] = $aQ['ID_PRDCT'];
     $aResult['id_group'] = $aQ['I_GRP'];
-    $aResult['options'] = $aOpts;
+    $aResult['a_options'] = $aOpts;
 
     //return structure
     return $aResult;
@@ -144,7 +146,7 @@ class Application_Model_Test
     //session_start();
     var_dump(session_id());
     $data = array('ID_TST'=>$iTest,
-                  'ID_QSTN'=>$iQuestion,
+                  'I_QSTN'=>$iQuestion,
                   'I_GRP'=>$iGroup,
                   'I_VALUE'=>$iValue,
                   'VC_SESSION_ID'=>session_id());
@@ -156,7 +158,7 @@ class Application_Model_Test
     }
     
     $id = $this->oDB->lastInsertId();
-    //var_dump($id);
+    var_dump($id);
     if(is_numeric($id)){
       return $id;
     }else{

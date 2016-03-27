@@ -18,25 +18,19 @@ CREATE TABLE `TESTS` (
 /*QUESTIONS TABLE
 	Relationship with the test table with ID_TST field
 */
-CREATE TABLE `QUESTIONS` (
-  `ID_QSTN` int(5) NOT NULL AUTO_INCREMENT,
-  `VC_CPY_QSTN` varchar(255) DEFAULT NULL,
-  `ID_TST` int(5) DEFAULT '0',
-  `ID_PRDCT` int(5) DEFAULT '0',
-  `I_GRP` int(5) DEFAULT '0',
-  PRIMARY KEY (`ID_QSTN`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 /*OPTIONS TABLE
 	There is a set of options for each test. So every question in a given test will have the same set of options as answer
 */
-CREATE TABLE `OPTIONS` (
-  `ID_OPTN` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `QUESTIONS` (
+  `ID_QSTN` int(5) NOT NULL AUTO_INCREMENT,
+  `VC_CPY_QSTN` varchar(255) DEFAULT NULL,
   `ID_TST` int(5) NOT NULL DEFAULT '0',
-  `VC_OPTN_TXT` varchar(45) NOT NULL DEFAULT 'Option with no copy',
-  `I_VAL` int(5) DEFAULT '0',
-  PRIMARY KEY (`ID_OPTN`)
+  `I_QSTN` int(5) NOT NULL DEFAULT '0',
+  `ID_PRDCT` int(5) DEFAULT '0',
+  `I_GRP` int(5) DEFAULT '0',
+  PRIMARY KEY (`ID_QSTN`,`ID_TST`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -66,7 +60,7 @@ CREATE TABLE `USER_RESULTS` (
   `ID_USR_RSLTS` int(11) NOT NULL AUTO_INCREMENT,
   `ID_USR` int(11) DEFAULT NULL,
   `ID_TST` int(5) DEFAULT NULL,
-  `ID_QSTN` int(11) DEFAULT NULL,
+  `I_QSTN` int(11) DEFAULT NULL,
   `I_GRP` int(11) DEFAULT NULL,
   `I_VALUE` int(5) DEFAULT NULL,
   `VC_SESSION_ID` varchar(45) DEFAULT NULL,
