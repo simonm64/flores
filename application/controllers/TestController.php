@@ -32,7 +32,7 @@ class TestController extends Zend_Controller_Action
     public function basicoAction()
     {
         //set the TestId
-        $this->iTestId = 1;
+        $this->iTestId = 2;
         $this->view->testid = 777;
         session_start();
         //var_dump(session_id());
@@ -58,21 +58,21 @@ class TestController extends Zend_Controller_Action
         
         /*----GET params upon ajax request-------*/
         //identify test
-        $iTest = 1;
+        $iTest = 2;
         
         //identify the question & group
-        $iQuestion = 2;
-        $iGroup = 2;
+        $iQuestion = 114;
+        $iGroup = 39;
         
         //identify the value of the answer
-        $iValue = 2;
+        $iValue = 4;
         /*-----------*/
         
         //add the answer to the system
-        $vInserted = $this->oTestModel->InsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
+        $vInserted = $this->oTestModel->UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
         var_dump($vInserted);
         //verify result of insert and continue
-        if(is_numeric($vInserted)){ //everything went fine and we have an inserted id
+        if(is_numeric($vInserted)){ //everything went fine and we have an inserted id or number of updated rows
             //var_dump("users_result_id-> ".$data);
             $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
             if(!$aQuestion){
@@ -84,11 +84,13 @@ class TestController extends Zend_Controller_Action
             
         }elseif(!$vInserted){
             //there was a problem with the insert
-            echo($data);//exception cought in the model
-            die(json_encode(array('sucess'=>true,'data'=>$data)));
+            echo($vInserted);//exception cought in the model
+            die(json_encode(array('sucess'=>true,'data'=>$vInserted)));
         }
-var_dump($vInserted);
     }
+    
+    
+    
 }
 
 

@@ -3,11 +3,12 @@
 class Application_Model_Test
 {
   private $oDB;
-  
+  private $oUser;
   public function __construct(){
     
     //connect to db
     $this->oDB = FloresDB::conn();
+    $this->oUser = new Application_Model_User;
     
   }
   
@@ -43,15 +44,15 @@ class Application_Model_Test
   public function getLastQuestionBySession($iTest){
     
     $sSql = "SELECT I_QSTN
-            FROM FLOWERS.USER_RESULTS
+            FROM USER_RESULTS
             WHERE ID_TST = ?
             AND VC_SESSION_ID = ?
             ORDER BY I_QSTN DESC";
     $iResult = $this->oDB->fetchOne($sSql,array($iTest,session_id()));
-    var_dump('lastquestion->'.$iResult);
+
     if(!$iResult)
       return 0;
-    Zend_debug::dump($iResult);
+
     return $iResult;
   
   }
@@ -71,7 +72,7 @@ class Application_Model_Test
               I_GRP
              FROM QUESTIONS
              WHERE ID_TST = ?
-             AND ID_QSTN = ?
+             AND I_QSTN = ?
              LIMIT 1";
     $aQ = $this->oDB->fetchRow($sSql, array($iTest,$iQuestion+1));
     
@@ -87,9 +88,10 @@ class Application_Model_Test
     
     $aResult['id'] = $aQ['ID_QSTN'];
     $aResult['vc_question'] = $aQ['VC_CPY_QSTN'];
+    $aResult['id_test'] = $aQ['ID_TST'];
     $aResult['i_question'] = $aQ['I_QSTN'];
     $aResult['id_prod'] = $aQ['ID_PRDCT'];
-    $aResult['id_group'] = $aQ['I_GRP'];
+    $aResult['i_group'] = $aQ['I_GRP'];
     $aResult['a_options'] = $aOpts;
 
     //return structure
@@ -141,42 +143,48 @@ class Application_Model_Test
   
   
   
-  public function InsertAnswer($iTest,$iQuestion,$iGroup,$iValue){
-    
-    //session_start();
-    var_dump(session_id());
-    $data = array('ID_TST'=>$iTest,
-                  'I_QSTN'=>$iQuestion,
-                  'I_GRP'=>$iGroup,
-                  'I_VALUE'=>$iValue,
-                  'VC_SESSION_ID'=>session_id());
-    
-    try{
-      $this->oDB->insert('USER_RESULTS', $data);
-    } catch(Zend_Exception $e){
-      return $e->getMessage();
-    }
-    
-    $id = $this->oDB->lastInsertId();
-    var_dump($id);
-    if(is_numeric($id)){
-      return $id;
+  public function UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue){
+
+    //verify existance of record (to avoid duplicates)
+    $iUsrRslt = $this->oUser->getUserResultbySession($iTest,$iQuestion,$iGroup,$iValue);
+    if($iUsrRslt > 0){
+      
+      $vResult = $this->oUser->updateResult($iTest,$iQuestion,$iGroup,$iValue);
+      
     }else{
-      return false;
+      
+      $vResult = $this->oUser->insertResult($iTest,$iQuestion,$iGroup,$iValue);
+      
     }
+    return $vResult;
+  }
+  
+  /*
+  public function getUserResultbySession($aParams){
+    
+    
     
   }
   
+  public function updateUserResult($aParams){
+    
+    
+  }
   
-  public function getResults($iIdUser, $iIdTest){
+  public function insertUserResult($aParams){
+    
+    
+  }
+  */
+  
+  
+  public function getUserResults($iIdUser, $iIdTest){
     
     //make the awsome query joining all the tables
     
     //return assosiative array.
     
   }
-  
-
 
 }
 

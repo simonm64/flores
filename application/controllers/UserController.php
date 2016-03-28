@@ -2,42 +2,25 @@
 
 class UserController extends Zend_Controller_Action
 {
-    
-    
-    private $oUserModel;
 
+    private $oUserModel;
+    private $oValidator;
     public function init()
     {
         /* Initialize action controller here */
-        $oUserModel = new Application_Model_User();
+        $this->oUserModel = new Application_Model_User();
+        $this->oValidator = new Zend_Validate_EmailAddress();
+        $this->oValidator->setMessage('El correo ingresado no es valido. Intente de nuevo');
         
     }
-
 
     public function indexAction()
     {
         // action body
     }
-    
-    
-    public function registerUser(){
-        
-        //ajax request
-        
-        
-        //get the email from $_POST
-        
-        //get the name from $_POST
-        
-        //add the user to DB
-        $iUserId = $oUserModel->addUser($sEmail, $sName);
-        
-        //sets the user Id available to the system
-    }
-    
-    
-    //will be called in the last question
-    public function getTestResults(){
+
+    public function getTestResults()
+    {
         
         //ajax request
         
@@ -54,14 +37,47 @@ class UserController extends Zend_Controller_Action
         
         //send signal to front end to show Thanks screen.
     }
-    
-    
-    public function createUser
-    
-    
-    
-    
+
+    public function registerUserAction()
+    {
+        session_start();
+        var_dump(session_id());
+        //catch the information from POST
+        $iTest = 2;
+        $sName = 'Simon Martinez Arriaga';
+        $sEmail = 'simonm64@gmail.com';
+        
+        
+        if ($this->oValidator->isValid($sEmail)){
+
+            $vUserId = $this->oUserModel->upsertUser($sName,$sEmail);
+            
+            if(is_numeric($vUserId)){
+                
+                //send email to admin with results
+                $vSent = $this->oUserModel->sendResultsEmail($vUserId,$iTest);
+                if(is_bool($vSent)){
+                    die(json_encode(array('success'=>true)));
+                }
+                else{
+                    //die(json_encode(array('success'=>false,'msg'=>'Error al enviar resultados. Intente mas tarde')));
+                    die(json_encode(array('success'=>false,'msg'=>$vSent)));
+                }
+                
+            }else{
+                die(json_encode(array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde')));
+                //die(json_encode(array('sucess'=>false,'msg'=>$vUserId)));
+            }
+            
+        } else{
+            $messages = $this->oValidator->getMessages();
+            die(json_encode(array('sucess'=>false,'msg'=>$messages["emailAddressInvalidFormat"])));
+        }
+        
+    }
 
 
 }
+
+
 
