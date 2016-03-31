@@ -55,9 +55,14 @@ class UserController extends Zend_Controller_Action
             if(is_numeric($vUserId)){
                 
                 //send email to admin with results
-                $vSent = $this->oUserModel->sendResultsEmail($vUserId,$iTest);
-                if(is_bool($vSent)){
+                $aResults = $this->oUserModel->getResults($vUserId,$iTest);
+                if(!is_array($aResults)){
                     die(json_encode(array('success'=>true)));
+                }
+                //Zend_debug::dump($aResults);
+                $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail);
+                if($vSent){
+                    die(json_encode(array('success'=>true,'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto')));
                 }
                 else{
                     //die(json_encode(array('success'=>false,'msg'=>'Error al enviar resultados. Intente mas tarde')));
@@ -75,7 +80,6 @@ class UserController extends Zend_Controller_Action
         }
         
     }
-
 
 }
 

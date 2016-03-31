@@ -4,6 +4,7 @@ class Application_Model_User
 {
   
   private $oDB;
+  private $oTest;
   public function __construct(){
     
     //connect to db
@@ -114,6 +115,22 @@ class Application_Model_User
   }
   
   
+  /*public function getUserById($iUserId){
+    
+    $sSql = "SELECT
+                VC_USER_EMAIL
+            FROM 
+            WHERE VC_EMAIL = ?";
+    $iResult = $this->oDB->fetchOne($sSql,array($sEmail));
+
+    if(!$iResult)
+      return 0;
+
+    return (int)$iResult;
+    
+  }*/
+  
+  
   public function updateUser($sName, $sEmail, $iUserId){
 
     $data = array(
@@ -150,7 +167,7 @@ class Application_Model_User
   }
   
   
-  public function sendResultsEmail($iUserId,$iTest){
+  public function getResults($iUserId, $iTest){
     
     //sets resultds to the user
     $vAffected = self::setResults($iUserId,$iTest);
@@ -159,13 +176,9 @@ class Application_Model_User
       return $bSet; //exception thrown
     }
     //get the results of user
-    $aResults = self::getResults($iUserId,$iTest);
+    $aResults = self::calcResults($iUserId,$iTest);
     
-    //generate view of email
-    
-    
-    //send email.
-    return true;
+    return $aResults;
   }
   
   
@@ -174,7 +187,7 @@ class Application_Model_User
    *Assigns the given user to all the user_results records
    *with the current session_id
    */
-  public function setResults($iUserId,$iTest){
+  public function setResults($iUserId, $iTest){
     
     $data = array(
       'ID_USR' => $iUserId,
@@ -193,28 +206,76 @@ class Application_Model_User
     
   }
   
-  public function getResults($iUserId,$iTest){
+  public function calcResults($iUserId, $iTest){
     
     $iLimit = 12;
     if($iTest == 2)
       $iLimit = 40;
+
     //calculate results
-            
-    $oSelect = $this->oDB->select()
-              ->from('USER_RESULTS', array('I_GRP','SUM(I_VALUE) AS I_VALUE'))
-              ->where('ID_TST =  ?',$iTest)
-              ->where('ID_USR = ?',$iUserId)
-              ->group('I_GRP')
-              ->order(array('I_VALUE DESC','I_GRP'))
-              ->limit($iLimit,0);
-    $sql = $oSelect->__toString();
-    var_dump($sql);
+    $sSql = "SELECT DISTINCT
+                Q.ID_PRDCT,
+                P.VC_PRDCT_TTL,
+                P.TXT_PRDCT_DSCRPTN,
+                UR.I_GRP,
+                UR.I_VALUE
+              FROM (SELECT 
+                      USER_RESULTS.I_GRP, 
+                      SUM(I_VALUE) AS I_VALUE 
+                      FROM USER_RESULTS 
+                      WHERE (ID_TST = ?) 
+                      AND (ID_USR = ?) 
+                      GROUP BY I_GRP 
+                      ORDER BY I_VALUE DESC, I_GRP ASC LIMIT $iLimit) UR
+              LEFT JOIN QUESTIONS Q
+              ON Q.I_GRP = UR.I_GRP AND Q.ID_TST = ?
+              JOIN PRODUCTS P
+              ON Q.ID_PRDCT = P.ID_PRDCT";
+    try{
+      $oQuery = $this->oDB->query($sSql,array($iTest,$iUserId,$iTest));
+    }catch(Zend_Exception $e){
+      return $e->getMessage();
+    }
     
-    $oQuery = $this->oDB->query($oSelect);
-    $aCalcResults = $oQuery->fetchAll();
-    Zend_debug::dump($aCalcResults);
+    $aResults = $oQuery->fetchAll();
     
-    //build test result with question text and values
+    return $aResults;
+  }
+  
+  
+  public function sendResultsEmail($aResults, $iTest, $sName, $sEmail){
+    
+    $this->oTest = new Application_Model_Test();
+    $aTestInfo = $this->oTest->getTestInfo($iTest);
+    
+    
+    Zend_debug::dump($aTestInfo);
+    Zend_debug::dump($aResults);
+    if(count($aResults)>0){
+      
+      $sBodyText = "Resultados del test '".$aTestInfo['title']."'<br>";
+      
+      $sProducts = '<p>';
+      $i = 1;
+      foreach($aResults as $r){
+        $sProducts .= '<p>';
+        $sProducts .= $i.'.- Flor Numero '.$r['ID_PRDCT'].':'. ' "'.$r['VC_PRDCT_TTL'].'". '.$r['TXT_PRDCT_DSCRPTN'];
+        $sProducts .= '</p><br>';
+        $sProducts .= '</p>';
+        $i++;
+      }
+      
+      $sProducts .= '</p>';
+      echo($sBodyText);
+      echo($sProducts);
+      return true;
+      
+    }else{
+      
+      return 'No hay resultados que enviar';
+    }
+    
+    
   }
 
 }
