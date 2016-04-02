@@ -146,7 +146,7 @@ class Application_Model_Test
   public function UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue){
 
     //verify existance of record (to avoid duplicates)
-    $iUsrRslt = $this->oUser->getUserResultbySession($iTest,$iQuestion,$iGroup,$iValue);
+    $iUsrRslt = $this->oUser->getResultbySession($iTest,$iQuestion,$iGroup,$iValue);
     if($iUsrRslt > 0){
       
       $vResult = $this->oUser->updateResult($iTest,$iQuestion,$iGroup,$iValue);

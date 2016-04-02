@@ -46,7 +46,6 @@ class Application_Model_User
     } catch(Zend_Exception $e){
       return $e->getMessage();
     }
-    
     return $iAffected;
     
   }
@@ -173,8 +172,12 @@ class Application_Model_User
     $vAffected = self::setResults($iUserId,$iTest);
     
     if(!is_numeric($vAffected)){
-      return $bSet; //exception thrown
+      return $vAffected; //exception thrown
     }
+    
+    /*if($vAffected == 0){
+      return "No records updated";
+    }*/
     //get the results of user
     $aResults = self::calcResults($iUserId,$iTest);
     
@@ -188,29 +191,32 @@ class Application_Model_User
    *with the current session_id
    */
   public function setResults($iUserId, $iTest){
-    
+    //var_dump($iUserId);
     $data = array(
       'ID_USR' => $iUserId,
     );
     
-    $where['ID_TST = ?'] = $iTest;
-    $where['VC_SESSION_ID = ?'] = session_id();
+    /*$where['ID_TST = ?'] = $iTest;
+    $where['VC_SESSION_ID = ?'] = session_id();*/
     
+    $where[] = "ID_TST = $iTest";
+    $where[] = "VC_SESSION_ID = '".session_id()."'";
+    
+    var_dump($where);
     try{
       $iAffected = $this->oDB->update('USER_RESULTS', $data, $where);
     } catch(Zend_Exception $e){
       return $e->getMessage();
     }
-    
+    //var_dump($iAffected);
     return $iAffected;
-    
   }
   
   public function calcResults($iUserId, $iTest){
-    
-    $iLimit = 12;
-    if($iTest == 2)
-      $iLimit = 40;
+    var_dump($iUserId,$iTest);
+    $iLimit = 18;
+    /*if($iTest == 2)
+      $iLimit = 40;*/
 
     //calculate results
     $sSql = "SELECT DISTINCT
@@ -224,38 +230,47 @@ class Application_Model_User
                       SUM(I_VALUE) AS I_VALUE 
                       FROM USER_RESULTS 
                       WHERE (ID_TST = ?) 
-                      AND (ID_USR = ?) 
-                      GROUP BY I_GRP 
-                      ORDER BY I_VALUE DESC, I_GRP ASC LIMIT $iLimit) UR
+                      AND (ID_USR = ?)
+                      GROUP BY I_GRP
+                      HAVING SUM(I_VALUE) > 0
+                      ) UR
               LEFT JOIN QUESTIONS Q
               ON Q.I_GRP = UR.I_GRP AND Q.ID_TST = ?
               JOIN PRODUCTS P
-              ON Q.ID_PRDCT = P.ID_PRDCT";
+              ON Q.ID_PRDCT = P.ID_PRDCT
+              ORDER BY UR.I_VALUE DESC, UR.I_GRP ASC LIMIT $iLimit";
     try{
       $oQuery = $this->oDB->query($sSql,array($iTest,$iUserId,$iTest));
     }catch(Zend_Exception $e){
       return $e->getMessage();
     }
-    
+    //Zend_debug::dump($oQuery);
     $aResults = $oQuery->fetchAll();
     
     return $aResults;
   }
   
   
-  public function sendResultsEmail($aResults, $iTest, $sName, $sEmail){
+  public function sendResultsEmail($aResults, $iTest,$sName,$sEmail,$sTel){
     
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
     
-    
     Zend_debug::dump($aTestInfo);
     Zend_debug::dump($aResults);
+    
     if(count($aResults)>0){
       
-      $sBodyText = "Resultados del test '".$aTestInfo['title']."'<br>";
+      $sSubject = "Resultados del test ".$aTestInfo['title']." de ".$sName;
       
-      $sProducts = '<p>';
+      $sBodyText = "Resultados del test '".$aTestInfo['title']."'<br>";
+      $sBodyText .= "Nombre: ".$sName."<br>";
+      $sBodyText .= "Email: ".$sEmail."<br>";
+      $sBodyText .= "Movil: ".$sTel."<br>"; 
+      
+      $sBodyText .= "<p>Hola, recibe un cordial saludo!! La siguiente lista muestra las flores m‡s necesarias para ti en orden de mayor a menor prioridad</p>";
+      
+      //$sProducts = '<p>';
       $i = 1;
       foreach($aResults as $r){
         $sProducts .= '<p>';
@@ -264,18 +279,45 @@ class Application_Model_User
         $sProducts .= '</p>';
         $i++;
       }
+      //$sProducts .= '</p>';
       
-      $sProducts .= '</p>';
+      $sBodyText .= $sProducts;
+      
+      $sBodyText .= "<p>IMPORTANTE:";
+      $sBodyText .= "-Para una mayor efectividad de la terapia floral, deben incluirse m‡ximo 6 flores(esencias) por frasco<br>";
+      $sBodyText .= "-Lo m‡s recomendable para iniciar el tratamiento floral es tomar 6 de las primeras 10 flores de la lista.";
+      $sBodyText .= " De esta forma se corregir‡n los aspectos negativos m‡s pronunciados de tu persona,";
+      $sBodyText .= " y conforme dichos aspectos se vayan erradicando, podr’amos continuar con una segunda f—rmula de 6 flores en segundo lugar de importancia de la lista";
+      $sBodyText .= "</p>";
+      
+      $sBodyText .= "<p>Modo de administraci—n: 4 gotas bajo la lengua, 4 veces al dia</p>";
+      
+      $sBodyText .= "<p>Duraci—n aproximada del frasco: 25 d’as</p>";
+      
+      $sBodyText .= "<p>Si decides la compra, estas son las formas de pago y entrega:</p>";
+      
+      $sBodyText .= "<p>";
+      $sBodyText .= "Costo del frasco de 30ml: $150 pesos mexicanos<br>";
+      $sBodyText .= "Forma de pago: <br>";
+      $sBodyText .= "1.-por  Dep—sito en Banamex. Si eliges esta opci—n responde a este email solicitando el nœmero de cuenta<br>";
+      $sBodyText .= "2.- En efectivo al entregar el producto (opci—n v‡lida solo si este producto te fue ofrecido personalmente por un vendedor nuestro y ordenaste la compra)<br>";
+      $sBodyText .= "</p>";
+      
+      $sBodyText .= "<p>";
+      $sBodyText .= "Entrega del producto en Saltillo Coahuila:<br>";
+      $sBodyText .= "A tu domicilio, lugar de trabajo, lugar donde te fue ofrecido el producto, o lugar acordado, segœn tu elecci—n<br>";
+      $sBodyText .= "</p>";
+      
+      $sBodyText .= "<p>Entregas al resto de la repœblica mexicana: por Aero flash</p>";
+      $sBodyText .= "<p>Saludos!!!!</p>";
       echo($sBodyText);
-      echo($sProducts);
+      
       return true;
       
     }else{
       
       return 'No hay resultados que enviar';
     }
-    
-    
   }
 
 }

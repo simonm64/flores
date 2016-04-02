@@ -32,23 +32,22 @@ class TestController extends Zend_Controller_Action
     public function basicoAction()
     {
         //set the TestId
-        $this->iTestId = 2;
+        $this->iTestId = 1;
         $this->view->testid = 777;
         session_start();
         //var_dump(session_id());
     
         //get the Test info
-        $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
+        $aTestInfo = $this->oTestModel->getTestInfo(1);
         self::cdump($aTestInfo);
                 
-        $aQuestion = $this->oTestModel->getBuildNextQuestion($this->iTestId);
+        $aQuestion = $this->oTestModel->getBuildNextQuestion(1);
         
         self::cdump($aQuestion);
         
         //prepate the view or (for angular js)
 
     }
-
 
     public function addAnswerAction()
     {
@@ -58,22 +57,21 @@ class TestController extends Zend_Controller_Action
         
         /*----GET params upon ajax request-------*/
         //identify test
-        $iTest = 2;
+        $iTest = 1;
         
         //identify the question & group
-        $iQuestion = 114;
-        $iGroup = 39;
+        $iQuestion = 1;
+        $iGroup = 1;
         
         //identify the value of the answer
-        $iValue = 4;
+        $iValue = 0;
         /*-----------*/
         
         //add the answer to the system
         $vInserted = $this->oTestModel->UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
-        var_dump($vInserted);
+        //var_dump($vInserted);
         //verify result of insert and continue
         if(is_numeric($vInserted)){ //everything went fine and we have an inserted id or number of updated rows
-            //var_dump("users_result_id-> ".$data);
             $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
             if(!$aQuestion){
                 echo('No more questions, show the the User registration view');
@@ -81,17 +79,31 @@ class TestController extends Zend_Controller_Action
             }
             self::cdump($aQuestion);//we have a next question and should be displayed
             die(json_encode(array('sucess'=>true,'data'=>$aQuestion)));//show the next question
-            
         }elseif(!$vInserted){
             //there was a problem with the insert
             echo($vInserted);//exception cought in the model
             die(json_encode(array('sucess'=>true,'data'=>$vInserted)));
         }
     }
+
+    public function completoAction()
+    {
+        session_start();
+        //var_dump(session_id());
     
-    
-    
+        //get the Test info
+        $aTestInfo = $this->oTestModel->getTestInfo(2);
+        self::cdump($aTestInfo);
+                
+        $aQuestion = $this->oTestModel->getBuildNextQuestion(2);
+        
+        self::cdump($aQuestion);
+    }
+
+
 }
+
+
 
 
 
