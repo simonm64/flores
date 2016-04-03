@@ -1,16 +1,30 @@
 
 <html>
 <head>
-<?php echo($this->headScript()->prependFile($this->baseUrl('/js/vendor/angular.min.js',
-						$this->headScript()->prependFile($this->baseUrl('/js/script.js')))));?>
+<?php echo $this->headScript()->prependFile($this->baseUrl('/js/vendor/angular.min.js'));
+			echo $this->headScript()->prependFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js'));
+			echo $this->headScript()->prependFile($this->baseUrl('/js/script.js')); ?>
       
 </head>
-<br /><br />
+<h2><?php echo($this->testTitle); ?></h2>
+<div ng-app="floresTest" ng-controller="testBasicoCtrl">
 
-<div ng-app="floresTest" ng-controller="testCtrl">
+ <div ng-model="oQuestion">
+ 
+   <ng-form >
+		<label>{{oQuestion.id }}. Pregunta: {{oQuestion.vc_question}}</label>
+		 <div ng-repeat="options in oQuestion.a_options">
+			<label><input type="radio" ng-model="oQuestion.value" value = "{{options.value}}">{{options.option}}</label>
+		 </div>
+		 
+     <button class="btn" ng-click="sendAnswer()">Continuar >></button><br>
+   </ng-form>
+   
+Question id {{oQuestion.i_question}} 
+Option value {{oQuestion.value}}
+Question group {{oQuestion.i_group}}
+Id test {{oQuestion.id_test}}
 
-<div ng-model="content">
-{{content}}
 </div>
 	<p>THIS IS THE BASIC <b>Test</b> and script/action name <b>basico</b></p>
 
