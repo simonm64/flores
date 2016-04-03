@@ -86,11 +86,6 @@ class UserController extends Zend_Controller_Action
             die(json_encode(array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde')));
             //die(json_encode(array('sucess'=>false,'msg'=>$vUserId)));
         }
-            
-        /*} else{
-            $messages = $this->oValidator->getMessages();
-            die(json_encode(array('sucess'=>false,'msg'=>$messages["emailAddressInvalidFormat"])));
-        }*/
         
     }
 
