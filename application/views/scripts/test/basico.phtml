@@ -1,4 +1,20 @@
+
+<html>
+<head>
+<?php echo($this->headScript()->prependFile($this->baseUrl('/js/vendor/angular.min.js',
+						$this->headScript()->prependFile($this->baseUrl('/js/script.js')))));?>
+      
+</head>
 <br /><br />
-<div id="view-content">
-	<p>THIS IS THE BASIC <b>Test</b> and script/action name <b>basico</b><?php echo $this->testid ?></p>
+
+<div ng-app="floresTest" ng-controller="testCtrl">
+
+<div ng-model="content">
+{{content}}
 </div>
+	<p>THIS IS THE BASIC <b>Test</b> and script/action name <b>basico</b></p>
+
+
+</div>
+
+</html>

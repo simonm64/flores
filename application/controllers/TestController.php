@@ -44,6 +44,7 @@ class TestController extends Zend_Controller_Action
         $aQuestion = $this->oTestModel->getBuildNextQuestion(1);
         
         self::cdump($aQuestion);
+        //die(json_encode(array("success"=>true,"data"=>$aQuestion)));
         
         //prepate the view or (for angular js)
 
@@ -100,8 +101,19 @@ class TestController extends Zend_Controller_Action
         self::cdump($aQuestion);
     }
 
+    public function getQuestionAction()
+    {
+        $aQuestion = $this->oTestModel->getBuildNextQuestion(1);
+        
+        //self::cdump($aQuestion);
+        die(json_encode(array("success"=>true,"data"=>$aQuestion)));
+        
+    }
+
 
 }
+
+
 
 
 

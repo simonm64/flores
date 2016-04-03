@@ -17,6 +17,7 @@
           <actionMethod actionName="basico"/>
           <actionMethod actionName="addAnswer"/>
           <actionMethod actionName="completo"/>
+          <actionMethod actionName="getQuestion"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -59,6 +60,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Test">
             <viewScriptFile forActionName="completo"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Test">
+            <viewScriptFile forActionName="getQuestion"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
