@@ -10,7 +10,7 @@ app.controller('testBasicoCtrl', function($scope,$http) {
       },
      }).then(function mySucces(response) {
          $scope.oQuestion = response.data.data;
-         $scope.oQuestion.value = 0;
+         //$scope.oQuestion.value = 0;
      }, function myError(response) {
          $scope.myWelcome = response.statusText;
      });
@@ -37,6 +37,7 @@ app.controller('testBasicoCtrl', function($scope,$http) {
             $http({
             method : "GET",
             url : "add-answer",
+            dataType: 'json',
             params: {i_question:$scope.oQuestion.i_question,
                   value: $scope.oQuestion.value,
                   id_test:$scope.oQuestion.id_test,
@@ -45,6 +46,7 @@ app.controller('testBasicoCtrl', function($scope,$http) {
                   'X-Requested-With':'XMLHttpRequest',
                   'Content-Type': 'application/x-www-form-urlencoded'
             },
+            
             }).then(function mySucces(response) {
             console.log(response);
          $scope.oQuestion = response.data;

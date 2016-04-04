@@ -20,6 +20,12 @@ class TestController extends Zend_Controller_Action
     {
         $this->oTestModel = new Application_Model_Test();
         $this->oRequest = new Zend_Controller_Request_Http();
+        
+        /*
+        parent::init();
+        $this->_helper->contextSwitch()
+        ->addActionContext('addAnswer', 'json')
+        ->initContext('json');*/
     }
 
     public function indexAction()
@@ -45,10 +51,9 @@ class TestController extends Zend_Controller_Action
 
     public function addAnswerAction()
     {
-        
         session_start();
         
-        if($this->oRequest->isXmlHttpRequest()){
+        /*if($this->oRequest->isXmlHttpRequest()){*/
             if($this->oRequest->isGet()){
                 $aQuery = $this->oRequest->getQuery();
                 
@@ -60,9 +65,9 @@ class TestController extends Zend_Controller_Action
             }else{
                 die("Bad Request");
             }
-        }else{
+        /*}else{
             die("Bad Request");
-        }
+        }*/
         
         //add the answer to the system
         $vInserted = $this->oTestModel->UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
@@ -74,13 +79,25 @@ class TestController extends Zend_Controller_Action
                 //echo('No more questions, show the the User registration view');
                 die(json_encode(array('sucess'=>true,'data'=>'0')));
             }
-            //everything went fine
-            die(json_encode(array('sucess'=>true,'data'=>$aQuestion)));//show the next question
+            //$data = array("success"=>true,"data"=>$aQuestion);
+            
+            //die(json_encode(array("success"=>true,"data"=>$aQuestion)));//show the next question
         }elseif(!$vInserted){
             //there was a problem with the insert
             //echo($vInserted);//exception cought in the model
             die(json_encode(array('sucess'=>true,'data'=>$vInserted)));
         }
+        
+        
+        //$this->view->addAnswer = $data;
+        
+        //echo $this->_helper->json($data);
+        header("Content-type: text/html; charset=UTF-8");
+        die(json_encode(array("success"=>true,"data"=>$aQuestion)));
+        //echo Zend_Json::encode($data);
+        //var_dump($data);
+        echo $this->getHelper('json')->sendJson($data);
+        //$this->_helper->viewRenderer->setNoRender(true);
     }
 
     public function completoAction()
