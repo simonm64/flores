@@ -1,10 +1,12 @@
 
 <html>
-<head>
-<?php echo $this->headScript()->prependFile($this->baseUrl('/js/vendor/angular.min.js'));
- echo $this->headScript()->prependFile($this->baseUrl('/js/script.js')); ?>
-      
-</head>
+<?php
+	$this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
+	$this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
+	$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
+	echo $this->headScript();
+?>
+
 <h2><?php echo($this->testTitle); ?></h2>
 <div ng-app="floresTest" ng-controller="testBasicoCtrl">
 
@@ -26,7 +28,6 @@ Id test {{oQuestion.id_test}}
 
 </div>
 	<p>THIS IS THE BASIC <b>Test</b> and script/action name <b>basico</b></p>
-
 
 </div>
 

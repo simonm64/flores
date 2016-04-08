@@ -54,7 +54,6 @@ class Application_Model_Test
       return 0;
 
     return $iResult;
-  
   }
   
   

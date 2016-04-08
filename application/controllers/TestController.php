@@ -3,137 +3,130 @@
 class TestController extends Zend_Controller_Action
 {
 
-    public $iTestId = null;
+  public $iTestId = null;
 
-    public $oTestModel = null;
+  public $oTestModel = null;
 
-    public $aAnswers = null;
-    
-    private $oRequest = null;
+  public $aAnswers = null;
 
-    public function cdump($var)
-    {
-        Zend_Debug::dump($var);
+  private $oRequest = null;
+
+  public function cdump($var)
+  {
+      Zend_Debug::dump($var);
+  }
+
+  public function init()
+  {
+    $this->oTestModel = new Application_Model_Test();
+    $this->oRequest = new Zend_Controller_Request_Http();
+    mb_internal_encoding('utf-8');
+      /*
+      parent::init();
+      $this->_helper->contextSwitch()
+      ->addActionContext('addAnswer', 'json')
+      ->initContext('json');*/
+  }
+
+  public function indexAction()
+  {
+      // action body
+      //home page showin two tests
+  }
+
+  public function basicoAction()
+  {
+      //set the TestId
+      $this->iTestId = 1;
+      //$this->view->testid = 777;
+      session_start();
+      var_dump(session_id());
+
+      //get the Test info
+      $aTestInfo = $this->oTestModel->getTestInfo(1);
+
+      $this->view->testTitle = $aTestInfo["title"];
+
+  }
+
+  public function addAnswerAction()
+  {
+    session_start();
+
+    if($this->oRequest->isXmlHttpRequest()){
+      if ($this->oRequest->isPost()){
+        $aQuery = $this->oRequest->getPost();
+
+        $iTest = $this->oRequest->getPost('id_test');
+        $iQuestion = $this->oRequest->getPost('i_question');
+        $iGroup = $this->oRequest->getPost('i_group');
+        $iValue = $this->oRequest->getPost('value');
+
+      }else{
+        $this->_helper->viewRenderer->setNoRender(true);
+        $aData = array("success" => false, "msg" => "Bad Data");
+        $this->_helper->json($aData);
+        exit;
+      }
     }
+    //add the answer to the system
+    $vInserted = $this->oTestModel->UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue);
 
-    public function init()
-    {
-        $this->oTestModel = new Application_Model_Test();
-        $this->oRequest = new Zend_Controller_Request_Http();
-        
-        /*
-        parent::init();
-        $this->_helper->contextSwitch()
-        ->addActionContext('addAnswer', 'json')
-        ->initContext('json');*/
-    }
+    if(is_numeric($vInserted)){ //everything went fine and we have an inserted id or number of updated rows
+        $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
 
-    public function indexAction()
-    {
-        // action body
-        //home page showin two tests
-    }
-
-    public function basicoAction()
-    {
-        //set the TestId
-        $this->iTestId = 1;
-        //$this->view->testid = 777;
-        session_start();
-        //var_dump(session_id());
-    
-        //get the Test info
-        $aTestInfo = $this->oTestModel->getTestInfo(1);
-        
-        $this->view->testTitle = utf8_encode($aTestInfo["title"]);
-        
-    }
-
-    public function addAnswerAction()
-    {
-        session_start();
-        
-        /*if($this->oRequest->isXmlHttpRequest()){*/
-            if($this->oRequest->isGet()){
-                $aQuery = $this->oRequest->getQuery();
-                
-                $iTest = $aQuery['id_test'];
-                $iQuestion = $aQuery['i_question'];
-                $iGroup = $aQuery['i_group'];
-                $iValue = $aQuery['value'];
-               
-            }else{
-                die("Bad Request");
-            }
-        /*}else{
-            die("Bad Request");
-        }*/
-        
-        //add the answer to the system
-        $vInserted = $this->oTestModel->UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue);//session id is retrieved in model
-        
-        if(is_numeric($vInserted)){ //everything went fine and we have an inserted id or number of updated rows
-            $aQuestion = $this->oTestModel->getBuildNextQuestion($iTest);
-           
-            if(!$aQuestion){
-                //echo('No more questions, show the the User registration view');
-                die(json_encode(array('sucess'=>true,'data'=>'0')));
-            }
-            //$data = array("success"=>true,"data"=>$aQuestion);
-            
-            //die(json_encode(array("success"=>true,"data"=>$aQuestion)));//show the next question
-        }elseif(!$vInserted){
-            //there was a problem with the insert
-            //echo($vInserted);//exception cought in the model
-            die(json_encode(array('sucess'=>true,'data'=>$vInserted)));
+        if(!$aQuestion){
+            //echo('No more questions, show the the User registration view');
+          $aData = array(0);
         }
-        
-        
-        //$this->view->addAnswer = $data;
-        
-        //echo $this->_helper->json($data);
-        header("Content-type: text/html; charset=UTF-8");
-        die(json_encode(array("success"=>true,"data"=>$aQuestion)));
-        //echo Zend_Json::encode($data);
-        //var_dump($data);
-        echo $this->getHelper('json')->sendJson($data);
-        //$this->_helper->viewRenderer->setNoRender(true);
+        $aData = $aQuestion;
+
+    }
+    else{
+        //there was a problem with the insert
+        $aData = $vInserted;
     }
 
-    public function completoAction()
-    {
-        session_start();
-        //var_dump(session_id());
-    
-        //get the Test info
-        $aTestInfo = $this->oTestModel->getTestInfo(2);
-        self::cdump($aTestInfo);
-                
-        /*$aQuestion = $this->oTestModel->getBuildNextQuestion(2);
-        
-        self::cdump($aQuestion);*/
-    }
+    $this->_helper->viewRenderer->setNoRender(true);
+    $this->_helper->json($aData);
+    exit;
+  }
 
-    public function getQuestionAction()
-    {
-        if($this->oRequest->isXmlHttpRequest()){
-            $aQuery = $this->oRequest->getQuery();
-            if(is_numeric($aQuery["iTest"])){
-                $this->iTestId = (int)$aQuery["iTest"];
-                $aQuestion = $this->oTestModel->getBuildNextQuestion($this->iTestId);
-                if(is_array($aQuestion)){
-                    die(json_encode(array("success"=>true,"data"=>$aQuestion)));
-                }else{
-                    die(json_encode(array("success"=>true,"data"=>"No hay mas preguntas")));
-                }
-                
-            }else{
-                die(json_encode(array("success"=>false,"msg"=>"Bad Data")));
-            }
+
+  public function completoAction()
+  {
+      session_start();
+      //var_dump(session_id());
+
+      //get the Test info
+      $aTestInfo = $this->oTestModel->getTestInfo(2);
+      self::cdump($aTestInfo);
+
+      /*$aQuestion = $this->oTestModel->getBuildNextQuestion(2);
+
+      self::cdump($aQuestion);*/
+  }
+
+  public function getQuestionAction()
+  {
+    session_start();
+    if($this->oRequest->isXmlHttpRequest()){
+      $aQuery = $this->oRequest->getQuery();
+      if(is_numeric($aQuery["iTest"])){
+        $this->iTestId = (int)$aQuery["iTest"];
+        $aData = $this->oTestModel->getBuildNextQuestion($this->iTestId);
+        //$this->_helper->layout()->disableLayout();
+        }else{
+            $aData= array("Bad Data");
         }
-        die("Bad data");
-        
+    }else{
+      $aData= array("Bad Data");
     }
+
+    $this->_helper->viewRenderer->setNoRender(true);
+    $this->_helper->json($aData);
+    exit;
+  }
 
 
 }

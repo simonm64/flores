@@ -1,5 +1,6 @@
 /*CREATE DB*/
 CREATE SCHEMA FLOWERS;
+ALTER SCHEMA `FLOWERS`  DEFAULT COLLATE utf8_spanish_ci ;
 
 /*Create webuser. Modify the server if necesary*/
 CREATE USER 'floresdbu'@'localhost' IDENTIFIED BY 'oscar1234';
