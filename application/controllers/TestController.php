@@ -78,9 +78,11 @@ class TestController extends Zend_Controller_Action
         if(!$aQuestion){
             //echo('No more questions, show the the User registration view');
           $aData = array(0);
+          $this->_helper->viewRenderer->setNoRender(true);
+          $this->_helper->json($aData);
+          exit;
         }
         $aData = $aQuestion;
-
     }
     else{
         //there was a problem with the insert
@@ -127,7 +129,6 @@ class TestController extends Zend_Controller_Action
     $this->_helper->json($aData);
     exit;
   }
-
 
 }
 
