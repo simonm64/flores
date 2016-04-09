@@ -10,6 +10,7 @@ class UserController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
         $this->oUserModel = new Application_Model_User();
+        $this->oRequest = new Zend_Controller_Request_Http();
         $this->oEmailValidator = new Zend_Validate_EmailAddress();
         $this->oEmailValidator->setMessage('El correo ingresado no es valido. Intente de nuevo, solo con numeros sin espacios.');
         $this->oTelValidator = new Zend_Validate_Regex(array('pattern' => '/^[0-9 ]+$/'));
@@ -43,48 +44,78 @@ class UserController extends Zend_Controller_Action
     public function registerUserAction()
     {
         session_start();
-        var_dump(session_id());
+        //var_dump(session_id());
         //catch the information from POST
-        $iTest = 1;
-        $sName = 'Simon Martinez Arriaga';
-        $sEmail = 'simonm64@gmail.com';
-        $sTel = '4343001';
-        
-        
+        //$iTest = 1;
+        //$sName = 'Simon Martinez Arriaga';
+        //$sEmail = 'simonm64@gmail.com';
+        //$sTel = '4343001';
+
+        if($this->oRequest->isXmlHttpRequest()){
+            if ($this->oRequest->isPost()){
+                //$aQuery = $this->oRequest->getPost();
+
+                $iTest = $this->oRequest->getPost('iTest');
+                $sName = $this->oRequest->getPost('firstName').$this->oRequest->getPost('lastName');
+                $sEmail = $this->oRequest->getPost('email');
+                $sTel = $this->oRequest->getPost('phoneNumber');
+
+            }else{
+                $this->_helper->viewRenderer->setNoRender(true);
+                $aData = array(success=>false,'msg'=>'Bad Data');
+                $this->_helper->json($aData);
+                exit;
+            }
+        }
+
         if(!$this->oEmailValidator->isValid($sEmail)){
             $messages = $this->oEmailValidator->getMessages();
-            die(json_encode(array('sucess'=>false,'msg'=>$messages["emailAddressInvalidFormat"])));
+            //die(json_encode(array('sucess'=>false,'msg'=>$messages["emailAddressInvalidFormat"])));
+            $aData = array('success'=>false,'msg'=>$messages["emailAddressInvalidFormat"]);
+            $this->_helper->json($aData);
+            exit;
         }
         
         if(!$this->oTelValidator->isValid($sTel)){
             $messages = $this->oTelValidator->getMessages();
-            die(json_encode(array('sucess'=>false,'msg'=>$messages["regexNotMatch"])));
+            //die(json_encode(array('sucess'=>false,'msg'=>$messages["regexNotMatch"])));
+            $aData = array('success'=>false,'msg'=>$messages["regexNotMatch"]);
+            $this->_helper->json($aData);
+            exit;
         }
-        
-        /*if($this->oEmailValidator->isValid($sEmail)) */
 
         $vUserId = $this->oUserModel->upsertUser($sName,$sEmail);
-        var_dump($vUserId);
+        //var_dump($vUserId);
         if(is_numeric($vUserId)){
             
             //get results
             $aResults = $this->oUserModel->getResults($vUserId,$iTest);
             if(!is_array($aResults)){
-                die(json_encode(array('success'=>false,'msg'=>$aResults)));
+                //die(json_encode(array('success'=>false,'msg'=>$aResults)));
+                $aData = array('success'=>false,'msg'=>$aResults);
+                $this->_helper->json($aData);
+                exit;
             }
             //send email to admin with results
             $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel);
             if($vSent){
-                die(json_encode(array('success'=>true,'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto')));
-            }
-            else{
+                //die(json_encode(array('success'=>true,'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto')));
+                $aData = array('success'=>true, 'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto');
+            }else{
                 //die(json_encode(array('success'=>false,'msg'=>'Error al enviar resultados. Intente mas tarde')));
-                die(json_encode(array('success'=>false,'msg'=>$vSent)));
+                //die(json_encode(array('success'=>false,'msg'=>$vSent)));
+                $aData = array('success'=>false,'msg'=>$vSent);
             }
-            
+
+            $this->_helper->json($aData);
+            exit;
+
         }else{
-            die(json_encode(array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde')));
+            //die(json_encode(array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde')));
             //die(json_encode(array('sucess'=>false,'msg'=>$vUserId)));
+            $aData = array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde');
+            $this->_helper->json($aData);
+            exit;
         }
         
     }

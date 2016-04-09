@@ -20,7 +20,6 @@ class TestController extends Zend_Controller_Action
   {
     $this->oTestModel = new Application_Model_Test();
     $this->oRequest = new Zend_Controller_Request_Http();
-    mb_internal_encoding('utf-8');
       /*
       parent::init();
       $this->_helper->contextSwitch()
@@ -55,7 +54,7 @@ class TestController extends Zend_Controller_Action
 
     if($this->oRequest->isXmlHttpRequest()){
       if ($this->oRequest->isPost()){
-        $aQuery = $this->oRequest->getPost();
+        //$aQuery = $this->oRequest->getPost();
 
         $iTest = $this->oRequest->getPost('id_test');
         $iQuestion = $this->oRequest->getPost('i_question');
@@ -117,6 +116,9 @@ class TestController extends Zend_Controller_Action
       if(is_numeric($aQuery["iTest"])){
         $this->iTestId = (int)$aQuery["iTest"];
         $aData = $this->oTestModel->getBuildNextQuestion($this->iTestId);
+        if(!$aData){
+          $aData = array(0);
+        }
         //$this->_helper->layout()->disableLayout();
         }else{
             $aData= array("Bad Data");

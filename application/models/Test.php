@@ -60,7 +60,7 @@ class Application_Model_Test
   public function getBuildNextQuestion($iTest){
     
     $iQuestion = self::getLastQuestionBySession($iTest);
-    //var_dump('shut_'.$iQuestion);
+    
     //get question
     $sSql = "SELECT
               ID_QSTN,

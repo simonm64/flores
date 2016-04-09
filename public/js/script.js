@@ -1,5 +1,5 @@
 var app = angular.module('floresTest', []);
-app.controller('testBasicoCtrl', function($scope,$http) {
+app.controller('testBasicoCtrl', function($scope, $http, $window) {
 
   $http({method : "GET",
     url : "get-question",
@@ -7,14 +7,22 @@ app.controller('testBasicoCtrl', function($scope,$http) {
     headers: {
       'X-Requested-With':'XMLHttpRequest',
       },
-  }).then(function mySucces(response) {
-     $scope.oQuestion = response.data;
-     //$scope.oQuestion.value = 0;
+  }).then(function mySucces(response){
+      console.log(response);
+    if(response.data==0){
+      //no more questions send to the completed view
+      var url = $window.location.host;
+      $window.location = 'http://'+$window.location.host+'/flores/public/test';
+    }
+      $scope.oQuestion = response.data;
+      //$scope.oQuestion.value = 0;
   }, function myError(response) {
      $scope.myWelcome = response.statusText;
+
   });
 
   $scope.sendAnswer = function(){
+
     $http({
     method : "POST",
     url : "add-answer",
@@ -23,10 +31,6 @@ app.controller('testBasicoCtrl', function($scope,$http) {
       value: $scope.oQuestion.value,
       id_test:$scope.oQuestion.id_test,
       i_group:$scope.oQuestion.i_group}),
-    /*params: {i_question:$scope.oQuestion.i_question,
-          value: $scope.oQuestion.value,
-          id_test:$scope.oQuestion.id_test,
-          i_group:$scope.oQuestion.i_group},*/
     headers: {
           'X-Requested-With':'XMLHttpRequest',
           'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -35,15 +39,48 @@ app.controller('testBasicoCtrl', function($scope,$http) {
       console.log(response);
       if(response.data==0){
         //here the questions are finished. Need to display a view (modal)
-        $scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
+        //$scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
+        $window.location = 'http://'+$window.location.host+'/flores/public/user';
       }else{
         $scope.oQuestion = response.data;
       }
-
-
     //$scope.oQuestion.value = 2;
-    }, function Error(response) {
-          $scope.myWelcome = response.statusText;
+    }, function Error(response){
+      $scope.myWelcome = response.statusText;
     });
   }
+
+});
+
+app.controller('UserCtrl', function($scope, $http, $window){
+
+  $scope.register = function(){
+    $http({
+      method : "POST",
+      url : "user/register-user",
+      //transformRequest: transformRequestAsFormPost,
+      data:$.param({iTest:1,
+        firstName:$scope.firstName,
+        LastName: $scope.lastName,
+        email:$scope.email,
+        phoneNumber:$scope.phoneNumber}),
+      headers: {
+        'X-Requested-With':'XMLHttpRequest',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+    }).then(function Succes(response){
+      console.log(response);
+      if(response.data.success==true) {
+        //here the questions are finished. Need to display a view (modal)
+        alert(response.data.msg);
+        $window.location = 'http://'+$window.location.host+'/flores/public/test';
+      }else{
+        $scope.Message = response.data.msg;
+      }
+      //$scope.oQuestion.value = 2;
+    }, function Error(response){
+      $scope.myWelcome = response.statusText;
+    });
+  }
+
 });

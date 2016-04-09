@@ -202,7 +202,7 @@ class Application_Model_User
     $where[] = "ID_TST = $iTest";
     $where[] = "VC_SESSION_ID = '".session_id()."'";
     
-    var_dump($where);
+    //var_dump($where);
     try{
       $iAffected = $this->oDB->update('USER_RESULTS', $data, $where);
     } catch(Zend_Exception $e){
@@ -213,7 +213,7 @@ class Application_Model_User
   }
   
   public function calcResults($iUserId, $iTest){
-    var_dump($iUserId,$iTest);
+    //var_dump($iUserId,$iTest);
     $iLimit = 18;
     /*if($iTest == 2)
       $iLimit = 40;*/
@@ -246,7 +246,6 @@ class Application_Model_User
     }
     //Zend_debug::dump($oQuery);
     $aResults = $oQuery->fetchAll();
-    
     return $aResults;
   }
   
@@ -308,7 +307,7 @@ class Application_Model_User
       $sBodyText .= "<p>Saludos!!!!</p>";
       
       $sTransBodyText = mb_convert_encoding($sBodyText, "iso-8859-1","UTF-8");
-      echo($sTransBodyText);
+      //echo($sTransBodyText);
       
       /*Send via smtp*/
       /*$config = array('auth' => 'login',
@@ -328,10 +327,10 @@ class Application_Model_User
       $mail->setSubject($sSubject); 
       
       try{
-        $sent = $mail->send();
+        //$sent = $mail->send();
         /*$mail->send($tr);*/
       } catch(Zend_Mail_Transport_Exception $e){
-      return $e->getMessage();
+        return $e->getMessage();
       }
       return true;
       
