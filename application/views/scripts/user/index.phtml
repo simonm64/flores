@@ -1,14 +1,13 @@
-<html>
-	<?php
-		$this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
-		$this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
-		$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
-		echo $this->headScript();
+<?php
+	$this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
+	$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
+	//echo $this->headScript();
+	$this->headTitle('Registrar Usuario | Flores de Bach');
+	echo $this->headTile;
 ?>
-</html>
 <div id="view-content" ng-app="floresTest" ng-controller="UserCtrl" ng-model = "Message">
 	<h2>Register</h2>
-	<form name="form" ng-submit="register()" role="form">
+	<form name="form"  role="form">
 		<div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
 			<label for="username">Nombre</label>
 			<input type="text" name="firstName" id="firstName" class="form-control" ng-model="firstName" required />
@@ -30,7 +29,7 @@
 			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese telefeono</span>
 		</div>
 		<div class="form-actions">
-			<button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>
+			<button type="button" ng-click="register()" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>
 			<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
 			<a href="#/login" class="btn btn-link">Cancel</a>
 			<label>{{Message}}</label>

@@ -1,34 +1,28 @@
-
-<html>
 <?php
-	$this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
-	$this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
-	$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
-	echo $this->headScript();
+  $this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
+  $this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
+  //echo $this->headScript();
+  $this->headTitle('Test Basico | Flores de Bach');
+  echo $this->headTile;
 ?>
 
-<h2><?php echo($this->testTitle); ?></h2>
-<div ng-app="floresTest" ng-controller="testBasicoCtrl">
+<h2><?php echo($this->testTitle); //TODO make the div modal and animate?></h2>
+<div ng-app="floresTest" ng-controller="testBasicoCtrl" ng-init="init(1)">
 
  <div ng-model="oQuestion">
- 
-   <ng-form >
-		<label>{{oQuestion.id }}. Pregunta: {{oQuestion.vc_question}}</label>
-		 <div ng-repeat="options in oQuestion.a_options">
-			<label><input type="radio" ng-model="oQuestion.value" value = "{{options.value}}">{{options.option}}</label>
-		 </div>
-		 
-     <button class="btn" ng-click="sendAnswer()">Continuar >></button><br>
+    <ng-form >
+		    <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
+		    <div ng-repeat="options in oQuestion.a_options">
+        <label><input type="radio" ng-model="oQuestion.value" value = "{{options.value}}">{{options.option}}</label>
+		    </div>
+      <button class="btn" ng-click="sendAnswer()">Continuar >></button><br>
    </ng-form>
    
 Question id {{oQuestion.i_question}} 
 Option value {{oQuestion.value}}
 Question group {{oQuestion.i_group}}
-Id test {{oQuestion.id_test}}
+Id test fixed{{id_test}}
 
+  </div>
 </div>
 	<p>THIS IS THE BASIC <b>Test</b> and script/action name <b>basico</b></p>
-
-</div>
-
-</html>

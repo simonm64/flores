@@ -2,7 +2,6 @@
 
 class TestController extends Zend_Controller_Action
 {
-
   public $iTestId = null;
 
   public $oTestModel = null;
@@ -31,21 +30,21 @@ class TestController extends Zend_Controller_Action
   {
       // action body
       //home page showin two tests
+
+
   }
 
   public function basicoAction()
   {
-      //set the TestId
-      $this->iTestId = 1;
-      //$this->view->testid = 777;
-      session_start();
-      var_dump(session_id());
+    //set the TestId
+    $this->iTestId = 1;
+    //$this->view->testid = 777;
+    session_start();
+    var_dump(session_id());
 
-      //get the Test info
-      $aTestInfo = $this->oTestModel->getTestInfo(1);
-
-      $this->view->testTitle = $aTestInfo["title"];
-
+    //get the Test info
+    $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
+    //$this->headTitle($aTestInfo["title"]);
   }
 
   public function addAnswerAction()
@@ -103,9 +102,9 @@ class TestController extends Zend_Controller_Action
       $aTestInfo = $this->oTestModel->getTestInfo(2);
       self::cdump($aTestInfo);
 
-      /*$aQuestion = $this->oTestModel->getBuildNextQuestion(2);
+      $aQuestion = $this->oTestModel->getBuildNextQuestion(2);
 
-      self::cdump($aQuestion);*/
+      //self::cdump($aQuestion);
   }
 
   public function getQuestionAction()

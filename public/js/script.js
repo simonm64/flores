@@ -1,25 +1,31 @@
 var app = angular.module('floresTest', []);
 app.controller('testBasicoCtrl', function($scope, $http, $window) {
 
-  $http({method : "GET",
-    url : "get-question",
-    params: {iTest:1},
-    headers: {
-      'X-Requested-With':'XMLHttpRequest',
+  $scope.init = function (id){
+    $scope.id_test = id;
+    console.log($scope);
+    $http({
+      method: "GET",
+      url: "get-question",
+      params: {iTest: $scope.id_test},
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
       },
-  }).then(function mySucces(response){
+    }).then(function mySucces(response) {
       console.log(response);
-    if(response.data==0){
-      //no more questions send to the completed view
-      var url = $window.location.host;
-      $window.location = 'http://'+$window.location.host+'/flores/public/test';
-    }
+      if (response.data == 0) {
+        //no more questions send to the completed view
+        //TODO create completed view
+        var url = $window.location.host;
+        $window.location = 'http://' + $window.location.host + '/test/completed';
+      }
       $scope.oQuestion = response.data;
       //$scope.oQuestion.value = 0;
-  }, function myError(response) {
-     $scope.myWelcome = response.statusText;
+    }, function myError(response) {
+      $scope.myWelcome = response.statusText;
 
-  });
+    });
+  };
 
   $scope.sendAnswer = function(){
 
@@ -38,7 +44,7 @@ app.controller('testBasicoCtrl', function($scope, $http, $window) {
     }).then(function Succes(response) {
       console.log(response);
       if(response.data==0){
-        //here the questions are finished. Need to display a view (modal)
+        //TODO here the questions are finished. Need to redirect to a view explaining has finished
         //$scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
         $window.location = 'http://'+$window.location.host+'/user';
       }else{
@@ -51,6 +57,7 @@ app.controller('testBasicoCtrl', function($scope, $http, $window) {
   }
 
 });
+
 
 app.controller('UserCtrl', function($scope, $http, $window){
 
@@ -73,7 +80,7 @@ app.controller('UserCtrl', function($scope, $http, $window){
       if(response.data.success==true) {
         //here the questions are finished. Need to display a view (modal)
         alert(response.data.msg);
-        $window.location = 'http://'+$window.location.host+'/test';
+        $window.location = 'http://'+$window.location.host+'/';
       }else{
         $scope.Message = response.data.msg;
       }

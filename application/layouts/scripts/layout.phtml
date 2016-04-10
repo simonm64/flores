@@ -1,0 +1,31 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <?php
+    $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
+    $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
+      ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+    $this->headLink()->prependStylesheet($this->baseUrl('/css/bootstrap.min.css'), 'screen',true,
+      array('id' => 'bootstrap_stylesheet'));
+    $this->headLink()->prependStylesheet($this->baseUrl('/css/grayscale.css'), 'screen',true,
+      array('id' => 'cover_stylesheet'));
+    $this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
+    $this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery.easing.min.js','text/javascript'));
+    $this->headScript()->appendFile($this->baseUrl('/js/grayscale.js','text/javascript'));
+    $this->headScript()->appendFile($this->baseUrl('/js/vendor/bootstrap.min.js','text/javascript'));
+    echo $this->headMeta();
+    echo $this->headLink();
+    echo $this->headScript();
+    $this->headTitle('Inicio | Flores de Bach');
+    echo $this->headtitle();
+  ?>
+
+  <head>
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <?php
+      echo $this->render('header.phtml');
+      echo $this->layout()->content;
+      echo $this->render('footer.phtml');
+    ?>
+  </body>
+</html>

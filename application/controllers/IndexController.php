@@ -10,7 +10,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        //$this->headTitle('Zend Framework');
+        //$this->headTitle('Inicio - Flores de Bach');
     }
 
 }
