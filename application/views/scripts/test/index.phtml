@@ -1,4 +1,67 @@
-<br /><br />
-<div id="view-content">
-	<p>Test <b>COMPLETO gracias</b> and script/action name <b>index</b></p>
-</div>
+
+<!DOCTYPE html>
+<html>
+
+<?php
+  $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
+  $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
+    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+  //$this->headLink()->appendStylesheet($this->baseUrl('/css/bootstrap.min.css'),'screen');
+  $this->headLink()->prependStylesheet($this->baseUrl('/css/bootstrap.min.css'), 'screen',true,
+                                                    array('id' => 'bootstrap_stylesheet'));
+  $this->headLink()->prependStylesheet($this->baseUrl('/css/cover.css'), 'screen',true,
+    array('id' => 'cover_stylesheet'));
+  $this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
+  //$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
+  $this->headScript()->appendFile($this->baseUrl('/js/vendor/bootstrap.min.js','text/javascript'));
+  echo $this->headMeta();
+  echo $this->headLink();
+  echo $this->headScript();
+?>
+
+  <body>
+
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand">LOGO</h3>
+            <nav>
+              <ul class="nav masthead-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="inner cover">
+          <h1 class="cover-heading">Flores de Bach</h1>
+          <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+          <p class="lead">
+            <a href="#" class="btn btn-lg btn-default">Test Basico</a>
+          </p>
+          <p class="lead">
+            <a href="#" class="btn btn-lg btn-default">Test Completo</a>
+          </p>
+        </div>
+
+        <div class="mastfoot">
+          <div class="inner">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </body>
+
+</html>

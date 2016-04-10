@@ -40,7 +40,7 @@ app.controller('testBasicoCtrl', function($scope, $http, $window) {
       if(response.data==0){
         //here the questions are finished. Need to display a view (modal)
         //$scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
-        $window.location = 'http://'+$window.location.host+'/flores/public/user';
+        $window.location = 'http://'+$window.location.host+'/user';
       }else{
         $scope.oQuestion = response.data;
       }
@@ -73,7 +73,7 @@ app.controller('UserCtrl', function($scope, $http, $window){
       if(response.data.success==true) {
         //here the questions are finished. Need to display a view (modal)
         alert(response.data.msg);
-        $window.location = 'http://'+$window.location.host+'/flores/public/test';
+        $window.location = 'http://'+$window.location.host+'/test';
       }else{
         $scope.Message = response.data.msg;
       }
