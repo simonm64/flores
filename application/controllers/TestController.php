@@ -10,6 +10,8 @@ class TestController extends Zend_Controller_Action
 
   private $oRequest = null;
 
+  public $view = null;
+
   public function cdump($var)
   {
       Zend_Debug::dump($var);
@@ -19,6 +21,7 @@ class TestController extends Zend_Controller_Action
   {
     $this->oTestModel = new Application_Model_Test();
     $this->oRequest = new Zend_Controller_Request_Http();
+    //$this->view = new Zend_View();
       /*
       parent::init();
       $this->_helper->contextSwitch()
@@ -38,13 +41,19 @@ class TestController extends Zend_Controller_Action
   {
     //set the TestId
     $this->iTestId = 1;
+
+
     //$this->view->testid = 777;
     session_start();
-    var_dump(session_id());
+    //var_dump(session_id());
 
     //get the Test info
     $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
-    //$this->headTitle($aTestInfo["title"]);
+    //var_dump($aTestInfo);
+    //$sTestTitle = $aTestInfo["title"];
+    $this->view->sTestTitle = $aTestInfo["title"];
+    //$sUseTest =  "Iniciar Test";
+    $this->view->sUseTest = "Iniciar Test";
   }
 
   public function addAnswerAction()
@@ -95,16 +104,17 @@ class TestController extends Zend_Controller_Action
 
   public function completoAction()
   {
-      session_start();
-      //var_dump(session_id());
+    session_start();
+    //var_dump(session_id());
 
-      //get the Test info
-      $aTestInfo = $this->oTestModel->getTestInfo(2);
-      self::cdump($aTestInfo);
+    //get the Test info
+    $aTestInfo = $this->oTestModel->getTestInfo(2);
+    //self::cdump($aTestInfo);
 
-      $aQuestion = $this->oTestModel->getBuildNextQuestion(2);
+    $this->view->sTestTitle = $aTestInfo["title"];
+    //$sUseTest =  "Iniciar Test";
+    $this->view->sUseTest = "Iniciar Test";
 
-      //self::cdump($aQuestion);
   }
 
   public function getQuestionAction()

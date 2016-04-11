@@ -1,6 +1,5 @@
 var app = angular.module('floresTest', []);
-app.controller('testBasicoCtrl', function($scope, $http, $window) {
-
+app.controller('testCtrl', function($scope, $http, $window) {
   $scope.init = function (id){
     $scope.id_test = id;
     console.log($scope);
