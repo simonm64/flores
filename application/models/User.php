@@ -327,7 +327,7 @@ class Application_Model_User
       $mail->setSubject($sSubject); 
       
       try{
-        //$sent = $mail->send();
+        $sent = $mail->send();
         /*$mail->send($tr);*/
       } catch(Zend_Mail_Transport_Exception $e){
         return $e->getMessage();
