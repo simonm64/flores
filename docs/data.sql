@@ -1,3 +1,6 @@
+/*Change Table*/
+USE FLOWERS;
+
 /*Test table*/
 INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Básico');
 INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Completo');
