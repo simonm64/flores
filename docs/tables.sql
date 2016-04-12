@@ -2,10 +2,14 @@
 CREATE SCHEMA FLOWERS;
 ALTER SCHEMA `FLOWERS`  DEFAULT COLLATE utf8_spanish_ci ;
 
-/*Create webuser. Modify the server if necesary*/
-CREATE USER 'floresdbu'@'localhost' IDENTIFIED BY 'oscar1234';
+/*Create webuser. Modify the server if necesary
+CREATE USER 'floresdbu'@'localhost' IDENTIFIED BY 'oscar1234';*/
+/*Grant permission only to this DB
+GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'localhost' WITH GRANT OPTION;*/
+CREATE USER 'floresdbu'@'127.0.0.1' IDENTIFIED BY 'oscar1234';
 /*Grant permission only to this DB*/
-GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'localhost' WITH GRANT OPTION;
+GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'127.0.0.1' WITH GRANT OPTION;
+
 
 /*Change Table*/
 USE FLOWERS;
