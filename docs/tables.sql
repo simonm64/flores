@@ -7,6 +7,8 @@ CREATE USER 'floresdbu'@'localhost' IDENTIFIED BY 'oscar1234';
 /*Grant permission only to this DB*/
 GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'localhost' WITH GRANT OPTION;
 
+/*Change Table*/
+USE FLOWERS;
 
 /*TEST TABLE.*/
 CREATE TABLE `TESTS` (
