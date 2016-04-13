@@ -12,11 +12,6 @@ class TestController extends Zend_Controller_Action
 
   public $view = null;
 
-  public function cdump($var)
-  {
-      Zend_Debug::dump($var);
-  }
-
   public function init()
   {
     $this->oTestModel = new Application_Model_Test();
@@ -100,7 +95,6 @@ class TestController extends Zend_Controller_Action
     $this->_helper->json($aData);
     exit;
   }
-
 
   public function completoAction()
   {

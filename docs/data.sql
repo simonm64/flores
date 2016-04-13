@@ -51,7 +51,7 @@ INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('No se 
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Si, muy frecuentemente',2);
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'A veces',1);
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Rara vez',0);
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Nunca',0);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Nunca',-1);
 
 /*TEST 2 COMPLETO*/
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Tienes temores vagos que no puedes explicar? ','2','1','2','1');
@@ -175,7 +175,7 @@ INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Cree
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Si, muy frecuentemente',4);
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'A veces',1);
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Rara vez',0);
-INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Nunca',0);
+INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Nunca',-1);
 
 /*PRODUCTS TABLE*/
 INSERT INTO `FLOWERS`.`PRODUCTS` (`VC_PRDCT_TTL`,`TXT_PRDCT_DSCRPTN`) VALUES ('Flor para la ansiedad','Cuando sentimos ansiedad, tortura, desasosiego, pero nos ocultamos tras \"una mascara\" de alegría y despreocupación. Esta flor ayuda a que salgan a la superficie contenidos o traumas profundos que estaban bloqueados, nos ayuda a tomar conciencia de los conflictos y nos da la paz suficiente para superarlos');

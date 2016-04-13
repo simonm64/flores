@@ -5,34 +5,44 @@
 	$this->headTitle('Registrar Usuario | Flores de Bach');
 	echo $this->headTile;
 ?>
-<div id="view-content" ng-app="floresTest" ng-controller="UserCtrl" ng-model = "Message">
-	<h2>Register</h2>
-	<form name="form"  role="form">
-		<div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-			<label for="username">Nombre</label>
-			<input type="text" name="firstName" id="firstName" class="form-control" ng-model="firstName" required />
-			<span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">Ingrese Nombre</span>
-		</div>
-		<div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-			<label for="username">Apellido</label>
-			<input type="text" name="lastName" id="lastName" class="form-control" ng-model="lastName" required />
-			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese Apellido</span>
-		</div>
-		<div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-			<label for="username">Correo Electronico</label>
-			<input type="text" name="email" id="email" class="form-control" ng-model="email" required />
-			<span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingrese email</span>
-		</div>
-		<div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-			<label for="username">Telefono</label>
-			<input type="text" name="phoneNumber" id="phoneNumber" class="form-control" ng-model="phoneNumber" required />
-			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese telefeono</span>
-		</div>
-		<div class="form-actions">
-			<button type="button" ng-click="register()" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>
-			<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-			<a href="#/login" class="btn btn-link">Cancel</a>
-			<label>{{Message}}</label>
-		</div>
-	</form>
-</div>
+<section id="register">
+	<div class="col-md-10 col-md-offset-3" ng-app="floresTest" ng-controller="UserCtrl" ng-model="Message">
+		<h2>Registro</h2>
+		<form name="form" class="" role="form">
+   <div class="form-group row" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+     <label class="col-sm-2 form-control-label" for="username">Nombre</label>
+     <div class="col-sm-5">
+      <input class="form-control" type="text" name="firstName" id="firstName"  ng-model="firstName" required />
+     </div>
+     <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">Ingrese Nombre</span>
+   </div>
+			<div class="form-group row" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+				<label class="col-sm-2 form-control-label" for="username">Apellido</label>
+     <div class="col-sm-5">
+        <input type="text" name="lastName" id="lastName" class="form-control" ng-model="lastName" required />
+     </div>
+     <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese Apellido</span>
+			</div>
+			<div class="form-group row" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+				<label class="col-sm-2 form-control-label" for="username">Correo Electronico</label>
+    <div class="col-sm-5">
+     <input type="text" name="email" id="email" class="form-control" ng-model="email" required />
+    </div>
+				<span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingrese email</span>
+			</div>
+			<div class="form-group row" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+				<label class="col-sm-2 form-control-label" for="username">Telefono</label>
+     <div class="col-sm-5">
+				    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" ng-model="phoneNumber" required />
+     </div>
+				<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese telefeono</span>
+			</div>
+			<div class="form-actions">
+				<button type="button" ng-click="register()" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>
+				<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+				<a href="#/login" class="btn btn-link">Cancel</a>
+				<label>{{Message}}</label>
+			</div>
+		</form>
+	</div>
+ </section>

@@ -2,7 +2,6 @@ var app = angular.module('floresTest', []);
 app.controller('testCtrl', function($scope, $http, $window) {
   $scope.init = function (id){
     $scope.id_test = id;
-    console.log($scope);
     $http({
       method: "GET",
       url: "get-question",
@@ -11,7 +10,7 @@ app.controller('testCtrl', function($scope, $http, $window) {
         'X-Requested-With': 'XMLHttpRequest',
       },
     }).then(function mySucces(response) {
-      console.log(response);
+      //console.log(response);
       if (response.data == 0) {
         //no more questions send to the completed view
         //TODO create completed view
@@ -41,7 +40,7 @@ app.controller('testCtrl', function($scope, $http, $window) {
           'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
           },
     }).then(function Succes(response) {
-      console.log(response);
+      //console.log(response);
       if(response.data==0){
         //TODO here the questions are finished. Need to redirect to a view explaining has finished
         //$scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
@@ -75,7 +74,7 @@ app.controller('UserCtrl', function($scope, $http, $window){
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
     }).then(function Succes(response){
-      console.log(response);
+      //console.log(response);
       if(response.data.success==true) {
         //here the questions are finished. Need to display a view (modal)
         alert(response.data.msg);

@@ -66,6 +66,11 @@ class UserController extends Zend_Controller_Action
                 $this->_helper->json($aData);
                 exit;
             }
+        }else{
+            $this->_helper->viewRenderer->setNoRender(true);
+            $aData = array("success" => false, "msg" => "Bad Data");
+            $this->_helper->json($aData);
+            exit;
         }
 
         if(!$this->oEmailValidator->isValid($sEmail)){

@@ -25,22 +25,6 @@ class Application_Model_Test
   }
   
   
-  /*public function getQuestions($iTestId){
-
-    //query the questions
-    $sSql = "SELECT 
-              ID_QSTN,
-              VC_CPY_QSTN,
-              ID_TST,
-              ID_PRDCT,
-              I_GRP
-             FROM QUESTIONS
-             WHERE ID_TST = ?";
-    $aTestInfo = $this->oDB->fetchAll($sSql,$iTestId);
-    
-    return $aTestInfo;
-  }*/
-  
   public function getLastQuestionBySession($iTest){
     
     $sSql = "SELECT I_QSTN
@@ -110,36 +94,7 @@ class Application_Model_Test
     return $aOptions;
     
   }
-  
-  
-  /*public function buildTest($aInfo, $aQuestions, $aOptions){
-    
-    $aResult['title'] = $aInfo['VC_NME_TST'];
-    $aOpts= array();
-    foreach($aOptions as $aOp){
-      
-      $aOpts[] = array('option'=>$aOp['VC_OPTN_TXT'], 'value'=>$aOp['I_VAL']);
-      
-    }
-    
-  $iTotalQ = count($aQuestions);
-  $i=1;
-  foreach($aQuestions as $aQ){
-      $aResult['questions'][$aQ['ID_QSTN']]['id'] = $aQ['ID_QSTN'];
-      $aResult['questions'][$aQ['ID_QSTN']]['question'] = $aQ['VC_CPY_QSTN'];
-      $aResult['questions'][$aQ['ID_QSTN']]['id_prod'] = $aQ['ID_PRDCT'];
-      $aResult['questions'][$aQ['ID_QSTN']]['id_group'] = $aQ['I_GRP'];
-      $aResult['questions'][$aQ['ID_QSTN']]['is_last'] = 0;
-      $aResult['questions'][$aQ['ID_QSTN']]['options'] = $aOpts;
-      
-      if($iTotalQ == $i)
-        $aResult['questions'][$aQ['ID_QSTN']]['is_last'] = 1;
-      $i++;
-    }
-    Zend_Debug::dump($aResult);
-    
-  }*/
-  
+
   
   
   public function UpsertAnswer($iTest,$iQuestion,$iGroup,$iValue){
@@ -157,24 +112,6 @@ class Application_Model_Test
     }
     return $vResult;
   }
-  
-  /*
-  public function getUserResultbySession($aParams){
-    
-    
-    
-  }
-  
-  public function updateUserResult($aParams){
-    
-    
-  }
-  
-  public function insertUserResult($aParams){
-    
-    
-  }
-  */
   
   
   public function getUserResults($iIdUser, $iIdTest){

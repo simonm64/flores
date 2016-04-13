@@ -257,10 +257,10 @@ class Application_Model_User
     
     if(count($aResults)>0){
       
-      $sSubject = "Resultados del test ".$aTestInfo['title']." de ".$sName;
+      $sSubject = "Resultados del test ".utf8_decode($aTestInfo['title'])." de ".$sName;
       
-      $sBodyText = "Resultados del test '".utf8_encode($aTestInfo['title'])."'<br>";
-      $sBodyText .= "Nombre: ".utf8_encode($sName)."<br>";
+      $sBodyText = "Resultados del test '".utf8_decode($aTestInfo['title'])."'<br>";
+      $sBodyText .= "Nombre: ".utf8_decode($sName)."<br>";
       $sBodyText .= "Email: ".$sEmail."<br>";
       $sBodyText .= "Movil: ".$sTel."<br>"; 
       
@@ -270,7 +270,7 @@ class Application_Model_User
       $i = 1;
       foreach($aResults as $r){
         $sProducts .= '<p>';
-        $sProducts .= $i.'.- Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_encode($r['VC_PRDCT_TTL']).'". '.utf8_encode($r['TXT_PRDCT_DSCRPTN']);
+        $sProducts .= $i.'.- Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
         $sProducts .= '</p>';
         $i++;
       }
@@ -305,10 +305,7 @@ class Application_Model_User
       
       $sBodyText .= "<p>Entregas al resto de la rep&uacute;blica mexicana: por Aero flash</p>";
       $sBodyText .= "<p>Saludos!!!!</p>";
-      
-      $sTransBodyText = mb_convert_encoding($sBodyText, "iso-8859-1","UTF-8");
-      //echo($sTransBodyText);
-      
+
       /*Send via smtp*/
       /*$config = array('auth' => 'login',
                 'username' => 'myusername',
@@ -321,14 +318,14 @@ class Application_Model_User
       */
       
       $mail = new Zend_mail();
-      $mail->setBodyHtml($sTransBodyText);
+      $mail->setBodyHtml($sBodyText);
       $mail->setFrom("admin@floresbach.com", "Administracion Flores");
-      $mail->addTo("simonm64@gmail.com");//Oscar
+      $mail->addTo("oscarimagine@hotmail.com");
+      $mail->addCc("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       
       try{
         $sent = $mail->send();
-        /*$mail->send($tr);*/
       } catch(Zend_Mail_Transport_Exception $e){
         return $e->getMessage();
       }
