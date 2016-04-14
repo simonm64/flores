@@ -21,7 +21,7 @@
             <div ng-model="oQuestion">
               <ng-form >
                 <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
-                <div ng-repeat="options in oQuestion.a_options">
+                <div class="radio" ng-repeat="options in oQuestion.a_options">
                   <label><input type="radio" ng-model="oQuestion.value" value = "{{options.value}}">&nbsp;{{options.option}}</label>
                 </div>
                 <button class="btn btn-primary btn-lg" ng-disabled="!oQuestion.value"  ng-click="sendAnswer()">Continuar</button><br>
