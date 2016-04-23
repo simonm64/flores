@@ -2,6 +2,7 @@
 
 class IndexController extends Zend_Controller_Action
 {
+    public $oIndexModel = null;
 
     public function init()
     {
@@ -16,7 +17,16 @@ class IndexController extends Zend_Controller_Action
 
     public function escenciasAction()
     {
+
         // action body
+        //query the product_front table
+        $oIndexModel = new Application_Model_Index();
+
+        $aEscencias = $oIndexModel->getProductsFront();
+        //Zend_debug::dump($aEscencias);
+        //$view = new Zend_View();
+        $aEscencias = $oIndexModel->getProductsFront();
+        $this->view->aEscencias = $aEscencias;
     }
 
     public function dosisAction()

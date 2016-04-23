@@ -232,7 +232,7 @@ class Application_Model_User
                       WHERE (ID_TST = ?) 
                       AND (ID_USR = ?)
                       GROUP BY I_GRP
-                      HAVING SUM(I_VALUE) > 0
+                      HAVING SUM(I_VALUE) > 1
                       ) UR
               LEFT JOIN QUESTIONS Q
               ON Q.I_GRP = UR.I_GRP AND Q.ID_TST = ?

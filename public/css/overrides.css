@@ -37,9 +37,28 @@
     margin: 20px;
 }
 
+/*Escencias page*/
+.flor-description{
+    margin-bottom:25px;
+}
+
+.img-thumbnail{
+    float:left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 125px;
+}
+
 .paragraph-justified{
     text-align: justify;
 }
+
+.paragraph-flor-description{
+    position:relative;
+    top: 20px;;
+    text-align: left;
+}
+
 @media (max-width: 991px) {
     .navbar-flores {
         left: 20.5%;
@@ -49,16 +68,20 @@
         left: 8%;
     }
 
+    .img-thumbnail{
+        width: 100px;
+    }
+
 }
 @media (max-width: 767px) {
     .navbar-flores {
         width: 100%;
         left: 0px;
     }
-    .navbar-flores .navbar-nav > li > a {
-        color: white;
-        font-size: 12px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    .img-thumbnail{
+        width: 75px;
     }
+
 }
 

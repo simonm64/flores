@@ -37,6 +37,7 @@
       <modelsDirectory>
         <modelFile modelName="Test"/>
         <modelFile modelName="User"/>
+        <modelFile modelName="Index"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
