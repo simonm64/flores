@@ -14,7 +14,36 @@ class IndexController extends Zend_Controller_Action
         //$this->headTitle('Inicio - Flores de Bach');
     }
 
+    public function escenciasAction()
+    {
+        // action body
+    }
+
+    public function dosisAction()
+    {
+        // action body
+    }
+
+    public function contactoAction()
+    {
+        // action body
+    }
+
+    public function testimoniosAction()
+    {
+        // action body
+    }
+
+
 }
+
+
+
+
+
+
+
+
 
 
 
