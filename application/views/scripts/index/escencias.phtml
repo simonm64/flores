@@ -1,22 +1,25 @@
 <br /><br />
 <div class="container">
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-lg-10">
-      <div class="flor-description">
-        <img class="img-thumbnail img-rounded" src="/img/thumbnail/agrimonia.png" />
-        <h3>1. Agrimonia</h3>
-        <p class="lead paragraph-flor-description">Para los que ocultan sus temores detr&aacutes de una m&aacutescara de despreocupaci&oacuten</p>
-      </div>
-    </div>
-  </div>
+
 <?php
-  $aEsc = $this->aEscencias;
-  Zend_debug::dump($aEsc);?>
+  $aEscencias = $this->aEscencias;
 
-
-
-
-
+  if(count($aEscencias)>0){
+    $sHtml = "";
+    foreach($aEscencias as $aEsc){
+      $sHtml.= "<div class=\"row\">";
+      $sHtml.= "<div class=\"col-sm-2\"></div>";
+      $sHtml.= "<div class=\"col-lg-10\">";
+      $sHtml.= "<div class=\"flor-description\">";
+      $sHtml.= "<img class=\"img-thumbnail img-rounded\" src=\"".$aEsc["VC_FL_IMG"]."\" />";
+      $sHtml.= "<h3>".$aEsc["VC_PRDCT_TTL"]."</h3>";
+      $sHtml.= "<p class=\"lead paragraph-flor-description\">".$aEsc["TXT_PRDCT_DSCRPTN"]."</p>";
+      $sHtml.= "</div>";
+      $sHtml.= "</div>";
+      $sHtml.= "</div>";
+    }
+  }
+  echo($sHtml);
+?>
 
 </div>

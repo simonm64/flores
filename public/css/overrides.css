@@ -1,17 +1,23 @@
 .navbar-flores {
     background-color: #42dca3;
     border-color: #42dca3;
-    width: 535px;
-    left: 31.5%;
+    width: 600px;
+    left: 28%;
     text-align: center;
+}
+
+.btn-test-index {
+    color: #fff;
+    background-color: #42dca3;
+    border-color: #4cae4c;
+    left: 13%;
+    position: relative;
 }
 
 .btn-test {
     color: #fff;
     background-color: #42dca3;
     border-color: #4cae4c;
-    left: 17%;
-    position: relative;
 }
 
 .navbar-flores .navbar-nav > li > a {
@@ -42,6 +48,10 @@
     margin-bottom:25px;
 }
 
+.embed-responsive .embed-responsive-item{
+    width: 75%;
+    height: 75%;
+}
 .img-thumbnail{
     float:left;
     margin-right: 10px;
