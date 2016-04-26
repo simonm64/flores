@@ -23,6 +23,9 @@ class IndexController extends Zend_Controller_Action
 
         $aEscencias = $oIndexModel->getProductsFront();
         $this->view->aEscencias = $aEscencias;
+
+        //$paginator = Zend_Paginator::factory($aEscencias);
+        //Zend_Debug::dump($paginator);
     }
 
     public function dosisAction()

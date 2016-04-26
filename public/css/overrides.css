@@ -69,6 +69,19 @@
     text-align: left;
 }
 
+.btn-primary-green{
+    margin:5px;
+    background-color: #42dca3;
+}
+
+.btn-primary-continuar{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    position: relative;
+    left:75%;
+}
+
 @media (max-width: 991px) {
     .navbar-flores {
         left: 20.5%;
