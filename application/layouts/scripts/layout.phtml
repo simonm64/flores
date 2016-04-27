@@ -17,10 +17,19 @@
     echo $this->headScript();
     $this->headTitle('Inicio | Flores de Bach');
     echo $this->headtitle();
+    //TODO Include the facebook user id of the admin below
   ?>
-
+  <meta property="fb:admins" content="585600822"/>
   <head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.6";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
     <?php
       echo $this->render('header.phtml');
       echo $this->layout()->content;
