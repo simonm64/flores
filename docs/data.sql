@@ -2,8 +2,8 @@
 USE FLOWERS;
 
 /*Test table*/
-INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Básico');
-INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Test Completo');
+INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Cuestionario Básico');
+INSERT INTO `FLOWERS`.`TESTS`(`VC_NME_TST`) VALUES ('Cuestionario Completo');
 
 /*QUESTIONS Table*/
 /*Test 1 (Basico)*/

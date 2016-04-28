@@ -2,7 +2,7 @@
 	$this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
 	$this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
 	//echo $this->headScript();
-	$this->headTitle('Test Completo | Flores de Bach');
+	$this->headTitle('Cuestionario Completo | Flores de Bach');
 	echo $this->headTile;
 ?>
 
@@ -19,17 +19,18 @@
         <div class="modal-content text-left">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel"><?php echo $this->sTestTitle; //TODO set the progress ie "Question 1 of 140" ?></h4>
-              <div ng-model="oQuestion">
-                <ng-form >
-                  <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
-                  <div class="radio" ng-repeat="options in oQuestion.a_options">
-                    <label><input type="radio" ng-model="oQuestion.value" value = "{{options.value}}">&nbsp;{{options.option}}</label>
-                  </div>
-                  <button class="btn btn-primary btn-lg" ng-disabled="!oQuestion.value"  ng-click="sendAnswer()">Continuar</button><br>
-                </ng-form>
-              </div>
+            <h3 class="modal-title" id="myModalLabel"><?php echo $this->sTestTitle; //TODO set the progress ie "Question 1 of 140" ?></h3>
           </div>
+          <div class="modal-body" ng-model="oQuestion">
+            <ng-form >
+              <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
+              <div ng-repeat="options in oQuestion.a_options">
+                <label class="btn btn-primary-green"><input type="radio" ng-model="oQuestion.value" value="{{options.value}}">&nbsp;{{options.option}}</label>
+              </div>
+              <button class="btn btn-primary-continuar btn-lg" ng-disabled="!oQuestion.value"  ng-click="sendAnswer()">Continuar</button><br>
+            </ng-form>
+          </div>
+        </div>
         </div>
       </div>
     </div>

@@ -2,18 +2,19 @@
 
 class TestController extends Zend_Controller_Action
 {
-  public $iTestId = null;
 
-  public $oTestModel = null;
+    public $iTestId = null;
 
-  public $aAnswers = null;
+    public $oTestModel = null;
 
-  private $oRequest = null;
+    public $aAnswers = null;
 
-  public $view = null;
+    private $oRequest = null;
 
-  public function init()
-  {
+    public $view = null;
+
+    public function init()
+    {
     $this->oTestModel = new Application_Model_Test();
     $this->oRequest = new Zend_Controller_Request_Http();
     //$this->view = new Zend_View();
@@ -22,21 +23,18 @@ class TestController extends Zend_Controller_Action
       $this->_helper->contextSwitch()
       ->addActionContext('addAnswer', 'json')
       ->initContext('json');*/
-  }
+    }
 
-  public function indexAction()
-  {
+    public function indexAction()
+    {
       // action body
       //home page showin two tests
+    }
 
-
-  }
-
-  public function basicoAction()
-  {
+    public function basicoAction()
+    {
     //set the TestId
     $this->iTestId = 1;
-
 
     //$this->view->testid = 777;
     session_start();
@@ -48,11 +46,11 @@ class TestController extends Zend_Controller_Action
     //$sTestTitle = $aTestInfo["title"];
     $this->view->sTestTitle = $aTestInfo["title"];
     //$sUseTest =  "Iniciar Test";
-    $this->view->sUseTest = "Iniciar Test";
-  }
+    $this->view->sUseTest = "Iniciar";
+    }
 
-  public function addAnswerAction()
-  {
+    public function addAnswerAction()
+    {
     session_start();
 
     if($this->oRequest->isXmlHttpRequest()){
@@ -94,10 +92,10 @@ class TestController extends Zend_Controller_Action
     $this->_helper->viewRenderer->setNoRender(true);
     $this->_helper->json($aData);
     exit;
-  }
+    }
 
-  public function completoAction()
-  {
+    public function completoAction()
+    {
     session_start();
     //var_dump(session_id());
 
@@ -107,12 +105,12 @@ class TestController extends Zend_Controller_Action
 
     $this->view->sTestTitle = $aTestInfo["title"];
     //$sUseTest =  "Iniciar Test";
-    $this->view->sUseTest = "Iniciar Test";
+    $this->view->sUseTest = "Iniciar";
 
-  }
+    }
 
-  public function getQuestionAction()
-  {
+    public function getQuestionAction()
+    {
     session_start();
     if($this->oRequest->isXmlHttpRequest()){
       $aQuery = $this->oRequest->getQuery();
@@ -133,9 +131,17 @@ class TestController extends Zend_Controller_Action
     $this->_helper->viewRenderer->setNoRender(true);
     $this->_helper->json($aData);
     exit;
-  }
+    }
+
+    public function terminadoAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

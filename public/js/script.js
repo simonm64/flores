@@ -15,7 +15,7 @@ app.controller('testCtrl', function($scope, $http, $window) {
         //no more questions send to the completed view
         //TODO create completed view
         var url = $window.location.host;
-        $window.location = 'http://' + $window.location.host + '/test/completed';
+        $window.location = 'http://' + $window.location.host + '/test/terminado';
       }
       $scope.oQuestion = response.data;
       //$scope.oQuestion.value = 0;
@@ -62,11 +62,11 @@ app.controller('UserCtrl', function($scope, $http, $window){
   $scope.register = function(){
     $http({
       method : "POST",
-      url : "user/register-user",
+      url : "/user/register-user",
       //transformRequest: transformRequestAsFormPost,
       data:$.param({iTest:1,
         firstName:$scope.firstName,
-        LastName: $scope.lastName,
+        lastName: $scope.lastName,
         email:$scope.email,
         phoneNumber:$scope.phoneNumber}),
       headers: {

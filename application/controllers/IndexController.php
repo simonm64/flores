@@ -2,6 +2,7 @@
 
 class IndexController extends Zend_Controller_Action
 {
+
     public $oIndexModel = null;
 
     public function init()
@@ -43,8 +44,15 @@ class IndexController extends Zend_Controller_Action
         // action body
     }
 
+    public function testAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

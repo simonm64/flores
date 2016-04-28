@@ -232,7 +232,7 @@ class Application_Model_User
                       WHERE (ID_TST = ?) 
                       AND (ID_USR = ?)
                       GROUP BY I_GRP
-                      HAVING SUM(I_VALUE) > 1
+                      HAVING SUM(I_VALUE) > 0
                       ) UR
               LEFT JOIN QUESTIONS Q
               ON Q.I_GRP = UR.I_GRP AND Q.ID_TST = ?
@@ -254,7 +254,7 @@ class Application_Model_User
     
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
-    
+    //Zend_debug::dump($aResults);
     if(count($aResults)>0){
       
       $sSubject = "Resultados del test ".utf8_decode($aTestInfo['title'])." de ".$sName;
@@ -270,7 +270,7 @@ class Application_Model_User
       $i = 1;
       foreach($aResults as $r){
         $sProducts .= '<p>';
-        $sProducts .= $i.'.- Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
+        $sProducts .= $i.'.- <b>Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'</b>". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
         $sProducts .= '</p>';
         $i++;
       }
@@ -305,7 +305,7 @@ class Application_Model_User
       
       $sBodyText .= "<p>Entregas al resto de la rep&uacute;blica mexicana: por Aero flash</p>";
       $sBodyText .= "<p>Saludos!!!!</p>";
-
+      //Zend_debug::dump($sBodyText);
       /*Send via smtp*/
       /*$config = array('auth' => 'login',
                 'username' => 'myusername',
@@ -320,8 +320,9 @@ class Application_Model_User
       $mail = new Zend_mail();
       $mail->setBodyHtml($sBodyText);
       $mail->setFrom("admin@floresbach.com", "Administracion Flores");
-      $mail->addTo("floresdebach33@yahoo.com");
-      $mail->addCc("simonm64@gmail.com");
+      //$mail->addTo("floresdebach33@yahoo.com");
+      //$mail->addCc("simonm64@gmail.com");
+      $mail->addTo("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       
       try{
@@ -329,6 +330,7 @@ class Application_Model_User
       } catch(Zend_Mail_Transport_Exception $e){
         return $e->getMessage();
       }
+      session_destroy();
       return true;
       
     }else{

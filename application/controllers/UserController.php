@@ -56,7 +56,8 @@ class UserController extends Zend_Controller_Action
                 //$aQuery = $this->oRequest->getPost();
 
                 $iTest = $this->oRequest->getPost('iTest');
-                $sName = $this->oRequest->getPost('firstName').$this->oRequest->getPost('lastName');
+                $sName = $this->oRequest->getPost('firstName');
+                $sName .= ' '.$this->oRequest->getPost('lastName');
                 $sEmail = $this->oRequest->getPost('email');
                 $sTel = $this->oRequest->getPost('phoneNumber');
 

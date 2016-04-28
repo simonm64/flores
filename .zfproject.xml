@@ -14,6 +14,7 @@
           <actionMethod actionName="dosis"/>
           <actionMethod actionName="contacto"/>
           <actionMethod actionName="testimonios"/>
+          <actionMethod actionName="test"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Test">
@@ -22,6 +23,7 @@
           <actionMethod actionName="addAnswer"/>
           <actionMethod actionName="completo"/>
           <actionMethod actionName="getQuestion"/>
+          <actionMethod actionName="terminado"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -90,6 +92,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="testimonios"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="test"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Test">
+            <viewScriptFile forActionName="terminado"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
