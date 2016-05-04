@@ -1,4 +1,20 @@
+
+---------
+		If this is a maintenance deployment
+DROP SCHEMA FLOWERS
+
+Open the tables.sql file
+Comment out the creation of the mysql user
+---------
+
 ---------
 Create tables
 	Run tables.sql
+(This will create the user as well)
+--------
+
+
+--------
+Insert content data
+Run data.sql
 --------
