@@ -320,9 +320,8 @@ class Application_Model_User
       $mail = new Zend_mail();
       $mail->setBodyHtml($sBodyText);
       $mail->setFrom("admin@floresbach.com", "Administracion Flores");
-      //$mail->addTo("floresdebach33@yahoo.com");
-      //$mail->addCc("simonm64@gmail.com");
-      $mail->addTo("simonm64@gmail.com");
+      $mail->addTo("floresdebach33@yahoo.com");
+      //$mail->addTo("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       
       try{

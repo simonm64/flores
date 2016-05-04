@@ -8,14 +8,14 @@
     $sHtml = "";
     foreach($aEscencias as $aEsc){
       $sHtml.= "<div class=\"row\">";
-      $sHtml.= "<div class=\"col-sm-2\"></div>";
-      $sHtml.= "<div class=\"col-lg-10\">";
-      $sHtml.= "<div class=\"flor-description\">";
-      $sHtml.= "<img class=\"img-thumbnail img-rounded\" src=\"".$aEsc["VC_FL_IMG"]."\" />";
-      $sHtml.= "<h3>".$aEsc["VC_PRDCT_TTL"]."</h3>";
-      $sHtml.= "<p class=\"lead paragraph-flor-description\">".$aEsc["TXT_PRDCT_DSCRPTN"]."</p>";
-      $sHtml.= "</div>";
-      $sHtml.= "</div>";
+        $sHtml.= "<div class=\"col-sm-1\"></div>";
+        $sHtml.= "<div class=\"col-lg-10\">";
+          $sHtml.= "<div class=\"flor-description\">";
+            $sHtml.= "<img class=\"img-thumbnail img-rounded\" src=\"".$aEsc["VC_FL_IMG"]."\" />";
+            $sHtml.= "<h3>".$aEsc["VC_PRDCT_TTL"]."</h3>";
+            $sHtml.= "<p class=\"lead paragraph-flor-description\">".$aEsc["TXT_PRDCT_DSCRPTN"]."</p>";
+          $sHtml.= "</div>";
+        $sHtml.= "</div>";
       $sHtml.= "</div>";
     }
   }
