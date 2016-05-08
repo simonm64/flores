@@ -1,8 +1,9 @@
 <?php
   $this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
+
   $this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
   //echo $this->headScript();
-  $this->headTitle('Cuestonario B&acutesico | Flores de Bach');
+  $this->headTitle('Cuestionario Basico | Flores de Bach');
   echo $this->headTile;
 ?>
 
@@ -22,13 +23,13 @@
               <h3 class="modal-title" id="myModalLabel"><?php echo $this->sTestTitle; //TODO set the progress ie "Question 1 of 37" ?></h3>
             </div>
             <div class="modal-body" ng-model="oQuestion">
-                <ng-form>
-                  <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
-                  <div ng-repeat="options in oQuestion.a_options" >
-                    <label class="btn btn-primary-green"><input type="radio" name="optionAnswer" ng-model="oQuestion.value" value="{{options.value}}">&nbsp;{{options.option}}</label>
-                  </div>
-                  <button class="btn btn-primary-continuar btn-lg" ng-disabled="!oQuestion.value" ng-click="sendAnswer()">Continuar</button><br>
-                </ng-form>
+              <form>
+                <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
+                <div ng-repeat="options in oQuestion.a_options" >
+                  <label class="btn btn-primary-green"><input type="radio" name="optionAnswer" ng-model="oQuestion.value" value="{{options.value}}">&nbsp;{{options.option}}</label>
+                </div>
+              <button class="btn btn-primary-continuar btn-lg" ng-disabled="!oQuestion.value" ng-click="sendAnswer()">Continuar</button><br>
+              </form>
             </div>
           </div>
         </div>

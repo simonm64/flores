@@ -105,6 +105,7 @@ class UserController extends Zend_Controller_Action
             //send email to admin with results
             $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel);
             if($vSent){
+                self::kill_session_cookie();
                 //die(json_encode(array('success'=>true,'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto')));
                 $aData = array('success'=>true, 'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto');
             }else{
@@ -124,6 +125,13 @@ class UserController extends Zend_Controller_Action
             exit;
         }
         
+    }
+    
+    function kill_session_cookie(){
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', 0, $params['path'], $params['domain'], $params['secure'], isset($params['httponly']));
+        session_destroy();
+        session_unset();
     }
 
 }

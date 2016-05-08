@@ -33,20 +33,20 @@ class TestController extends Zend_Controller_Action
 
     public function basicoAction()
     {
-    //set the TestId
-    $this->iTestId = 1;
-
-    //$this->view->testid = 777;
-    session_start();
-    //var_dump(session_id());
-
-    //get the Test info
-    $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
-    //var_dump($aTestInfo);
-    //$sTestTitle = $aTestInfo["title"];
-    $this->view->sTestTitle = $aTestInfo["title"];
-    //$sUseTest =  "Iniciar Test";
-    $this->view->sUseTest = "Iniciar";
+        //set the TestId
+        $this->iTestId = 1;
+    
+        //$this->view->testid = 777;
+        session_start();
+        //var_dump(session_id());
+    
+        //get the Test info
+        $aTestInfo = $this->oTestModel->getTestInfo($this->iTestId);
+        //var_dump($aTestInfo);
+        //$sTestTitle = $aTestInfo["title"];
+        $this->view->sTestTitle = $aTestInfo["title"];
+        //$sUseTest =  "Iniciar Test";
+        $this->view->sUseTest = "Iniciar";
     }
 
     public function addAnswerAction()
@@ -96,17 +96,16 @@ class TestController extends Zend_Controller_Action
 
     public function completoAction()
     {
-    session_start();
-    //var_dump(session_id());
-
-    //get the Test info
-    $aTestInfo = $this->oTestModel->getTestInfo(2);
-    //self::cdump($aTestInfo);
-
-    $this->view->sTestTitle = $aTestInfo["title"];
-    //$sUseTest =  "Iniciar Test";
-    $this->view->sUseTest = "Iniciar";
-
+        session_start();
+        //var_dump(session_id());
+    
+        //get the Test info
+        $aTestInfo = $this->oTestModel->getTestInfo(2);
+        //self::cdump($aTestInfo);
+    
+        $this->view->sTestTitle = $aTestInfo["title"];
+        //$sUseTest =  "Iniciar Test";
+        $this->view->sUseTest = "Iniciar";
     }
 
     public function getQuestionAction()

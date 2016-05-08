@@ -329,7 +329,7 @@ class Application_Model_User
       } catch(Zend_Mail_Transport_Exception $e){
         return $e->getMessage();
       }
-      session_destroy();
+      //session_destroy();
       return true;
       
     }else{
