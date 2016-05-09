@@ -4,7 +4,6 @@
   $this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
   //echo $this->headScript();
   $this->headTitle('Cuestionario Basico | Flores de Bach');
-  echo $this->headTile;
 ?>
 
 <section id="test" class="content-section text-center">
@@ -16,11 +15,11 @@
 
       <h2><?php //TODO make the div modal and animate?></h2>
       <div id="divQuestion" class="modal fade" ng-app="floresTest" ng-controller="testCtrl" ng-init="init(1)">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content text-left">
+        <div class="modal-dialog text-left" role="document">
+          <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h3 class="modal-title" id="myModalLabel"><?php echo $this->sTestTitle; //TODO set the progress ie "Question 1 of 37" ?></h3>
+              <label class="modal-title title-h3" id="myModalLabel"><?php echo $this->sTestTitle; ?></label><label class="modal-title title-h5 text-right">&nbsp(38 Preguntas)</label>
             </div>
             <div class="modal-body" ng-model="oQuestion">
               <form>

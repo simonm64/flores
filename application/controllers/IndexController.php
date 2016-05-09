@@ -16,7 +16,7 @@ class IndexController extends Zend_Controller_Action
         //$this->headTitle('Inicio - Flores de Bach');
     }
 
-    public function escenciasAction()
+    public function esenciasAction()
     {
         // action body
         //query the product_front table
