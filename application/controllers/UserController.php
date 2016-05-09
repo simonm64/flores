@@ -59,7 +59,13 @@ class UserController extends Zend_Controller_Action
                 $sName = $this->oRequest->getPost('firstName');
                 $sName .= ' '.$this->oRequest->getPost('lastName');
                 $sEmail = $this->oRequest->getPost('email');
-                $sTel = $this->oRequest->getPost('phoneNumber');
+                if($this->oRequest->getPost('phoneNumber')){
+                    $sTel = $this->oRequest->getPost('phoneNumber');
+                }
+                else{
+                    $sTel = "";
+                }
+                
 
             }else{
                 $this->_helper->viewRenderer->setNoRender(true);
@@ -82,7 +88,7 @@ class UserController extends Zend_Controller_Action
             exit;
         }
         
-        if(!$this->oTelValidator->isValid($sTel)){
+        if($sTel != "" && !$this->oTelValidator->isValid($sTel)){
             $messages = $this->oTelValidator->getMessages();
             //die(json_encode(array('sucess'=>false,'msg'=>$messages["regexNotMatch"])));
             $aData = array('success'=>false,'msg'=>$messages["regexNotMatch"]);
@@ -127,7 +133,7 @@ class UserController extends Zend_Controller_Action
         
     }
     
-    function kill_session_cookie(){
+    public function kill_session_cookie(){
         $params = session_get_cookie_params();
         setcookie(session_name(), '', 0, $params['path'], $params['domain'], $params['secure'], isset($params['httponly']));
         session_destroy();
