@@ -47,6 +47,7 @@ class TestController extends Zend_Controller_Action
         $this->view->sTestTitle = $aTestInfo["title"];
         //$sUseTest =  "Iniciar Test";
         $this->view->sUseTest = "Iniciar";
+	$this->view->iTestId = 1;
     }
 
     public function addAnswerAction()
@@ -106,6 +107,7 @@ class TestController extends Zend_Controller_Action
         $this->view->sTestTitle = $aTestInfo["title"];
         //$sUseTest =  "Iniciar Test";
         $this->view->sUseTest = "Iniciar";
+	$this->view->iTestId = 2;
     }
 
     public function getQuestionAction()

@@ -3,7 +3,7 @@
 <br /><br />
 <div id="view-content" ng-app="floresTest" ng-controller="UserCtrl">
 	<h2>Register</h2>
-	<form name="form" ng-submit="register()" role="form">
+	<form name="form" ng-submit="register("<?php echo $this->idTest; ?>")" role="form">
 		<div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
 			<label for="username">First name</label>
 			<input type="text" name="firstName" id="firstName" class="form-control" ng-model="firstName" required />
@@ -22,7 +22,7 @@
 		<div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
 			<label for="username">Last name</label>
 			<input type="text" name="phoneNumber" id="phoneNumber" class="form-control" ng-model="phoneNumber" required />
-			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese telefeono</span>
+			<span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese tel&eacutefono</span>
 		</div>
 		<div class="form-actions">
 			<button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>

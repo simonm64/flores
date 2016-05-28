@@ -231,6 +231,7 @@ class Application_Model_User
                       FROM USER_RESULTS 
                       WHERE (ID_TST = ?) 
                       AND (ID_USR = ?)
+			AND (VC_SESSION_ID = ?)
                       GROUP BY I_GRP
                       HAVING SUM(I_VALUE) > 0
                       ) UR
@@ -240,7 +241,7 @@ class Application_Model_User
               ON Q.ID_PRDCT = P.ID_PRDCT
               ORDER BY UR.I_VALUE DESC, UR.I_GRP ASC LIMIT $iLimit";
     try{
-      $oQuery = $this->oDB->query($sSql,array($iTest,$iUserId,$iTest));
+      $oQuery = $this->oDB->query($sSql,array($iTest,$iUserId,session_id(),$iTest));
     } catch(Zend_Exception $e){
       return $e->getMessage();
     }
@@ -270,7 +271,12 @@ class Application_Model_User
       $i = 1;
       foreach($aResults as $r){
         $sProducts .= '<p>';
-        $sProducts .= $i.'.- <b>Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'</b>". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
+	if(($iTest == 1 && $r['I_VALUE']>=2) ||($iTest == 2 && $r['I_VALUE']>=4 ))
+		$high = "<b>(*)</b>";
+	else
+		$high = "";
+
+        $sProducts .= $i.$high.'.- <b>Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'</b>". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
         $sProducts .= '</p>';
         $i++;
       }
@@ -305,7 +311,8 @@ class Application_Model_User
       
       $sBodyText .= "<p>Entregas al resto de la rep&uacute;blica mexicana: por Aero flash</p>";
       $sBodyText .= "<p>Saludos!!!!</p>";
-      //Zend_debug::dump($sBodyText);
+     
+ //Zend_debug::dump($sBodyText);
       /*Send via smtp*/
       /*$config = array('auth' => 'login',
                 'username' => 'myusername',
@@ -320,7 +327,7 @@ class Application_Model_User
       $mail = new Zend_mail();
       $mail->setBodyHtml($sBodyText);
       $mail->setFrom("admin@floresbach.com", "Administracion Flores");
-      $mail->addTo("terapiafloral33@gmail.com");
+      $mail->addTo("floresdebach33@yahoo.com");
       //$mail->addTo("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       

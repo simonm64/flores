@@ -44,7 +44,7 @@ app.controller('testCtrl', function($scope, $http, $window) {
       if(response.data==0){
         //TODO here the questions are finished. Need to redirect to a view explaining has finished
         //$scope.oQuestion.vc_question = 'PREGUNTAS TERMINADAS GRACIAS';
-        $window.location = 'http://'+$window.location.host+'/user';
+        $window.location = 'http://'+$window.location.host+'/user?i='+$scope.oQuestion.id_test;
       }else{
         $scope.oQuestion = response.data;
       }
@@ -59,12 +59,13 @@ app.controller('testCtrl', function($scope, $http, $window) {
 
 app.controller('UserCtrl', function($scope, $http, $window){
 
-  $scope.register = function(){
+  $scope.register = function(idTest){
+	$scope.idTest = idTest;
     $http({
       method : "POST",
       url : "/user/register-user",
       //transformRequest: transformRequestAsFormPost,
-      data:$.param({iTest:1,
+      data:$.param({iTest:$scope.idTest,
         firstName:$scope.firstName,
         lastName: $scope.lastName,
         email:$scope.email,
