@@ -319,16 +319,16 @@ class Application_Model_User
                 'password' => 'password',
                 'ssl' => 'tls',
                 'port' => 25);
-     
-      $tr = new Zend_Mail_Transport_Smtp('mail.example.com',$config);
-      Zend_Mail::setDefaultTransport($tr);
-      */
-      
+*/
       $mail = new Zend_mail();
+      $tr = new Zend_Mail_Transport_Smtp('localhost');
+      //Zend_Mail::setDefaultTransport($tr);
+      $mail->setDefaultTransport($tr);
+      // $mail = new Zend_mail();
       $mail->setBodyHtml($sBodyText);
-      $mail->setFrom("admin@floresbach.com", "Administracion Flores");
+      $mail->setFrom("ubuntu@mail.floresdebach33.com", "Administracion Flores");
       $mail->addTo("floresdebach33@yahoo.com");
-      //$mail->addTo("simonm64@gmail.com");
+      //$mail->addBcc("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       
       try{
