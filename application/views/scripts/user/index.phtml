@@ -25,19 +25,19 @@
          </div>
          <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Ingrese Apellido</span>
        </div>
-       <div class="form-group row" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-        <label class="col-sm-2 form-control-label" for="username">Correo Electr&oacutenico</label>
-        <div class="col-sm-10">
+       <div class="form-group row" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+        <label class="col-sm-4 form-control-label" for="username">Correo Electr&oacutenico</label>
+        <div class="col-sm-8">
          <input type="text" name="email" id="email" class="form-control" ng-model="email" required />
         </div>
         <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Ingrese email</span>
        </div>
-       <div class="form-group row" ng-class="{ 'has-error': form.phoneNumber.$dirty }">
+       <div class="form-group row" ng-class="{ 'has-error': form.phoneNumber.error.required }">
         <label class="col-sm-2 form-control-label" for="username">Tel&eacutefono</label>
          <div class="col-sm-10">
             <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" ng-model="phoneNumber" />
          </div>
-        <span ng-show="form.phoneNumber.$dirty" class="help-block">Ingrese tel&eacutefono</span>
+        <span ng-show="form.phoneNumber.$dirty" class="help-block">Ingrese tel&eacutefono (opcional)</span>
        </div>
        <div class="form-actions">
         <button type="button" ng-click="register('<?php	echo($this->idTest); ?>')" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Enviar</button>

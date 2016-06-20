@@ -109,7 +109,7 @@ $aQuery = $this->oRequest->getQuery();
             $aResults = $this->oUserModel->getResults($vUserId,$iTest);
             if(!is_array($aResults)){
                 //die(json_encode(array('success'=>false,'msg'=>$aResults)));
-                $aData = array('success'=>false,'msg'=>$aResults);
+                $aData = array('success'=>false,'msg'=>'Ocurrio un error al guardar su informacion. Intentelo de nuevo mas tarde. No cierre su navegador.');
                 $this->_helper->json($aData);
                 exit;
             }
@@ -122,7 +122,7 @@ $aQuery = $this->oRequest->getQuery();
             }else{
                 //die(json_encode(array('success'=>false,'msg'=>'Error al enviar resultados. Intente mas tarde')));
                 //die(json_encode(array('success'=>false,'msg'=>$vSent)));
-                $aData = array('success'=>false,'msg'=>$vSent);
+                $aData = array('success'=>false,'msg'=>'No se pudo enviar la notificacion al administrador. Favor de ponerse en contacto con el.');
             }
 
             $this->_helper->json($aData);
@@ -131,7 +131,7 @@ $aQuery = $this->oRequest->getQuery();
         }else{
             //die(json_encode(array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde')));
             //die(json_encode(array('sucess'=>false,'msg'=>$vUserId)));
-            $aData = array('sucess'=>false,'msg'=>'Error al gurdar usuario. Intente mas tarde');
+            $aData = array('sucess'=>false,'msg'=>'Error al guardar usuario. Intente mas tarde');
             $this->_helper->json($aData);
             exit;
         }

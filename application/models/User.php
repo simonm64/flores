@@ -56,7 +56,7 @@ class Application_Model_User
                   'I_QSTN'=>$iQuestion,
                   'I_GRP'=>$iGroup,
                   'I_VALUE'=>$iValue,
-                  'VC_SESSION_ID'=>session_id()
+                  'VC_SESSION_ID'=>session_id(),
                   );
     
       try{
@@ -144,7 +144,7 @@ class Application_Model_User
     } catch(Zend_Exception $e){
       return $e->getMessage();
     }
-    
+    self::mailAdmin('User updated', 'User <b>'.$sName.'</b> with Email <b>'.$sEmail.'</b> was updated. User id <b>'.$iUserId.'</b>');
     return $iAffected;
   }
   
@@ -160,7 +160,7 @@ class Application_Model_User
     } catch(Zend_Exception $e){
       return $e->getMessage();
     }
-    
+    self::mailAdmin('User inserted','User <b>'.$sName.'</b> with with Email <b>'.$sEmail.'</b> was inserted');
     return ($this->oDB->lastInsertId());
     
   }
@@ -180,7 +180,7 @@ class Application_Model_User
     }*/
     //get the results of user
     $aResults = self::calcResults($iUserId,$iTest);
-    
+    self::mailAdmin('Operation getResults ok', 'User <b>'.$iUserId.'</b> and Test <b>'.$iTest.'</b>');
     return $aResults;
   }
   
@@ -206,7 +206,9 @@ class Application_Model_User
     try{
       $iAffected = $this->oDB->update('USER_RESULTS', $data, $where);
     } catch(Zend_Exception $e){
-      return $e->getMessage();
+      $exception = $e->getMessage();
+      self::mailAdmin('Error on User::setResults()','Error on update results for user <b>'.$iUserId.'</b> and Test <b>'.$iTest.'</b>. Exception: <p>'.$exception.'.</p>');
+      return false;
     }
     //var_dump($iAffected);
     return $iAffected;
@@ -251,7 +253,7 @@ class Application_Model_User
   }
   
   
-  public function sendResultsEmail($aResults, $iTest,$sName,$sEmail,$sTel){
+  public function sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel){
     
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
@@ -328,13 +330,15 @@ class Application_Model_User
       $mail->setBodyHtml($sBodyText);
       $mail->setFrom("ubuntu@mail.floresdebach33.com", "Administracion Flores");
       $mail->addTo("floresdebach33@yahoo.com");
-      //$mail->addBcc("simonm64@gmail.com");
+      $mail->addBcc("simonm64@gmail.com");
       $mail->setSubject($sSubject); 
       
       try{
         $sent = $mail->send();
       } catch(Zend_Mail_Transport_Exception $e){
-        return $e->getMessage();
+       $exception = $e->getMessage();
+       self::mailAdmin('Error sending email', 'Error with user $sEmail in test $iTest</b> Exception: <p>$exception</p>');
+       return false;
       }
       //session_destroy();
       return true;
@@ -342,6 +346,20 @@ class Application_Model_User
     }else{
       return 'No hay resultados que enviar';
     }
+  }
+
+  public function mailAdmin($sSubject, $sContent){
+      $mail = new Zend_mail();
+      $tr = new Zend_Mail_Transport_Smtp('localhost');
+      //Zend_Mail::setDefaultTransport($tr);
+      $mail->setDefaultTransport($tr);
+      // $mail = new Zend_mail();
+      $mail->setBodyHtml('<p>'.$sSubject.'</p><p>'.$sContent.'</p>');
+      $mail->setFrom("ubuntu@mail.floresdebach33.com", "Activity floresdebach33.com");
+      //$mail->addTo("floresdebach33@yahoo.com");
+      $mail->addTo("simonm64@gmail.com");
+      $mail->setSubject('Activity Log');
+      $sent = $mail->send();
   }
 
 }
