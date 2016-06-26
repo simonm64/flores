@@ -1,17 +1,13 @@
 /*CREATE DB*/
 CREATE SCHEMA FLOWERS;
-ALTER SCHEMA `FLOWERS`  DEFAULT COLLATE utf8_spanish_ci ;
+ALTER SCHEMA `FLOWERS`  DEFAULT COLLATE utf8_spanish_ci;
 
-/*Create webuser. Modify the server if necesary
-CREATE USER 'floresdbu'@'localhost' IDENTIFIED BY 'oscar1234';*/
-/*Grant permission only to this DB
-GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'localhost' WITH GRANT OPTION;*/
+/*Create webuser*/
 CREATE USER 'floresdbu'@'127.0.0.1' IDENTIFIED BY 'oscar1234';
 /*Grant permission only to this DB*/
 GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'127.0.0.1' WITH GRANT OPTION;
 
-
-/*Change Table*/
+/*Change to DB*/
 USE FLOWERS;
 
 /*TEST TABLE.*/
@@ -24,11 +20,6 @@ CREATE TABLE `TESTS` (
 
 /*QUESTIONS TABLE
 	Relationship with the test table with ID_TST field
-*/
-
-
-/*OPTIONS TABLE
-	There is a set of options for each test. So every question in a given test will have the same set of options as answer
 */
 CREATE TABLE `QUESTIONS` (
   `ID_QSTN` int(5) NOT NULL AUTO_INCREMENT,
@@ -71,9 +62,14 @@ CREATE TABLE `USER_RESULTS` (
   `I_GRP` int(11) DEFAULT NULL,
   `I_VALUE` int(5) DEFAULT NULL,
   `VC_SESSION_ID` varchar(45) DEFAULT NULL,
+  `DT_ANSWRD` datetime DEFAULT NULL,
   PRIMARY KEY (`ID_USR_RSLTS`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+
+/*OPTIONS TABLE
+	There is a set of options for each test. So every question in a given test will have the same set of options as answer
+*/
 CREATE TABLE `OPTIONS` (
   `ID_OPTN` INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `ID_TST` INT(5) DEFAULT '0' NOT NULL,
@@ -90,4 +86,4 @@ CREATE TABLE `PRODUCTS_FRONT` (
   `VC_FL_IMG` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   `I_CTGRY` int(11) DEFAULT '0',
   PRIMARY KEY (`ID_PRDCT_FRONT`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
