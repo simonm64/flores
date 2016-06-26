@@ -66,6 +66,11 @@ CREATE TABLE `USER_RESULTS` (
   PRIMARY KEY (`ID_USR_RSLTS`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+/*ADD DATETIME VALUE WHEN A QUESTION IS ANSWERED. NO CHANGE IN PHP CODE*/
+CREATE trigger `answer_record_inserted` before insert
+    on `USER_RESULTS`
+    for each row
+    set new.`DT_ANSWRD` = now();
 
 /*OPTIONS TABLE
 	There is a set of options for each test. So every question in a given test will have the same set of options as answer
@@ -78,7 +83,7 @@ CREATE TABLE `OPTIONS` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-/*PRODUCTS FRONT TABE*/
+/*PRODUCTS FRONT TABLE*/
 CREATE TABLE `PRODUCTS_FRONT` (
   `ID_PRDCT_FRONT` int(11) NOT NULL AUTO_INCREMENT,
   `VC_PRDCT_TTL` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
