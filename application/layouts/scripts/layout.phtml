@@ -9,17 +9,13 @@
       ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
     $this->headLink()->prependStylesheet($this->baseUrl('/css/bootstrap.min.css'), 'screen',true, array('id'=>'bootstrap_stylesheet'));
     $this->headLink()->appendStylesheet($this->baseUrl('/css/overrides.css'), 'screen',true, array('id'=>'style-overrides'));
-    //$this->headLink()->prependStylesheet($this->baseUrl('/css/grayscale.css'), 'screen',true, array('id' => 'cover_stylesheet'));
     $this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery-1.12.2.min.js','text/javascript'));
     $this->headScript()->appendFile($this->baseUrl('/js/vendor/jquery.easing.min.js','text/javascript'));
-    //$this->headScript()->appendFile($this->baseUrl('/js/grayscale.js','text/javascript'));
     $this->headScript()->appendFile($this->baseUrl('/js/vendor/bootstrap.min.js','text/javascript'));
     echo $this->headMeta();
     echo $this->headLink();
     echo $this->headScript();
-    //$this->headTitle('Flores de Bach');
     echo $this->headTitle();
-    //TODO Include the facebook user id of the admin below
   ?>
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
