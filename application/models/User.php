@@ -251,7 +251,7 @@ class Application_Model_User
       $mail->setBodyHtml($sBodyText);
       $mail->setFrom("ubuntu@mail.floresdebach33.com", "Administracion Flores");
       $mail->addTo("floresdebach33@yahoo.com");
-      $mail->addBcc("simonm64@gmail.com");
+      $mail->addBcc("smartinez@svam.com");
       $mail->setSubject($sSubject); 
 
       try{
