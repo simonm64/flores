@@ -275,7 +275,7 @@ class Application_Model_User
       $mail->setBodyHtml('<p>'.$sSubject.'</p><p>'.$sContent.'</p>');
       $mail->setFrom("ubuntu@mail.floresdebach33.com", "Activity floresdebach33.com");
       //$mail->addTo("floresdebach33@yahoo.com");
-      $mail->addTo("simonm64@gmail.com");
+      $mail->addTo("smartinez@svam.com");
       $mail->setSubject('Activity Log');
       $sent = $mail->send();
   }
