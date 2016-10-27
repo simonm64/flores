@@ -1,4 +1,4 @@
-/*Change Table*/
+/*Change Schema*/
 USE FLOWERS;
 
 /*Test table*/
@@ -45,7 +45,6 @@ INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('Sueño
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('Me cuesta muchísimo decidirme entre varias cosas o a lo largo del día mi humor varía de la alegría a la tristeza.','1','36','28','36');
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('Me gusta distanciarme de los demás y solucionar mis propias dificultades solo/a, los demás a veces piensan que soy orgulloso o excesivamente independiente. ','1','37','34','37');
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('No se decir que \"no\", al final acabo haciendo muchas cosas que en el fondo no deseo hacer, incluso renunciando a mis propias necesidades por complacer a los demás. ','1','38','4','38');
-
 
 /*OPTIONS FOR TEST 1*/
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (1,'Si, muy frecuentemente',2);
@@ -168,8 +167,6 @@ INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Sien
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Tiendes a tomar el mando en las circunstancias y situaciones en las que te involucras?','2','112','32','39');
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Eres de carácter fuerte y esperas una obediencia total e incondicional de las personas a tu alrededor?','2','113','32','39');
 INSERT INTO QUESTIONS (VC_CPY_QSTN,ID_TST,I_QSTN,ID_PRDCT,I_GRP) VALUES ('¿Crees que eres un \"líder nato\"?','2','114','32','39');
-
-
 
 /*OPTIONS FOR TEST 2*/
 INSERT INTO `FLOWERS`.`OPTIONS` (`ID_TST`,`VC_OPTN_TXT`,`I_VAL`) VALUES (2,'Si, muy frecuentemente',4);

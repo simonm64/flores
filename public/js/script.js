@@ -1,5 +1,5 @@
 var app = angular.module('floresTest', []);
-app.controller('testCtrl', function($scope, $http, $window) {
+app.controller('testCtrl', function($scope, $http, $window){
   $scope.init = function (id){
     $scope.id_test = id;
     $http({
@@ -26,7 +26,6 @@ app.controller('testCtrl', function($scope, $http, $window) {
   };
 
   $scope.sendAnswer = function(){
-
     $http({
     method : "POST",
     url : "add-answer",
@@ -53,12 +52,10 @@ app.controller('testCtrl', function($scope, $http, $window) {
       $scope.myWelcome = response.statusText;
     });
   }
-
 });
 
 
 app.controller('UserCtrl', function($scope, $http, $window){
-
   $scope.register = function(idTest){
 	$scope.idTest = idTest;
     $http({
@@ -88,5 +85,4 @@ app.controller('UserCtrl', function($scope, $http, $window){
       $scope.myWelcome = response.statusText;
     });
   }
-
 });

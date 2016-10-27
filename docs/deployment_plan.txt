@@ -1,6 +1,6 @@
 
 ---------
-		If this is a maintenance deployment
+If this is a maintenance deployment
 DROP SCHEMA FLOWERS
 
 Open the tables.sql file
@@ -13,8 +13,19 @@ Create tables
 (This will create the user as well)
 --------
 
-
 --------
 Insert content data
 Run data.sql
 --------
+
+
+
+
+----DEPLOYMENT FOR INTEGRATION OF TEST 3------
+--------
+RUN THE test3_deploy.sql
+--------
+
+---------
+git pull
+---------
