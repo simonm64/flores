@@ -183,6 +183,7 @@ class Application_Model_User
               ON Q.I_GRP = UR.I_GRP AND Q.ID_TST = ?
               JOIN PRODUCTS P
               ON Q.ID_PRDCT = P.ID_PRDCT
+							AND Q.ID_TST = P.ID_TST
               ORDER BY UR.I_VALUE DESC, UR.I_GRP ASC LIMIT $iLimit";
     try{
       $oQuery = $this->oDB->query($sSql,array($iTest,$iUserId,session_id(),$iTest));
@@ -195,7 +196,6 @@ class Application_Model_User
 
   public function sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel)
   {
-
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
     if(count($aResults)>0){

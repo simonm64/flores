@@ -1,0 +1,57 @@
+---
+Flores de Bach
+V 1.0
+Deployment Plan
+-----
+
+DBA
+----ONLY IN NEW SERVER-----
+--------
+Create Schema
+-Schemas are FLOWERS_DEV, FLOWERS_QA, FLOWERS_UAT, FLORES (prod)
+CREATE SCHEMA FLOWERS;
+ALTER SCHEMA `FLOWERS`  DEFAULT COLLATE utf8_spanish_ci;
+--------
+
+----ONLY IN NEW SERVER-----
+---------
+-Create web user and grant permissions
+CREATE USER 'floresdbu'@'127.0.0.1' IDENTIFIED BY 'oscar1234';
+GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'127.0.0.1' WITH GRANT OPTION;
+----------
+
+----------
+-Run ddl's with deploy_sql
+-Open the file and follow order.	
+	php maintenance/deploy/1_0/deploy_sql.php --mode apply_ddl --group #each one
+----------
+
+----------
+-Run dml's with deploy_sql
+	sudo php maintenance/deploy/1_0/deploy_sql.php --mode apply_dml --group #each one
+----------
+
+----------
+-Check the database is in place with data correcty
+----------
+
+SYS ADMIN
+----------
+-Pull all the files from repository
+	sudo git pull;
+----------
+
+END USER
+---------
+-Navigate the web
+---------
+
+---------
+-Test the Test Basico
+-Verify is sending emails with the right information
+---------
+
+---------
+-Test the Test Completo
+-Verify is sending emails with the right information
+---------
