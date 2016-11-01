@@ -1,0 +1,39 @@
+<?php
+  $this->headScript()->appendFile($this->baseUrl('/js/vendor/angular.min.js','text/javascript'));
+
+  $this->headScript()->appendFile($this->baseUrl('/js/script.js','text/javascript'));
+  //echo $this->headScript();
+  $this->headTitle('Cuestionario Niños | Flores de Bach');
+?>
+
+<section id="test" class="content-section text-center">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h1><?php echo $this->sTestTitle ?></h1>
+
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#divQuestion"><?php echo $this->sUseTest ?> </button>
+
+      <h2><?php //TODO make the div modal and animate?></h2>
+      <div id="divQuestion" class="modal fade" ng-app="floresTest" ng-controller="testCtrl" ng-init="init(3)">
+        <div class="modal-dialog text-left" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <label class="modal-title title-h3" id="myModalLabel"><?php echo $this->sTestTitle; ?></label><label class="modal-title title-h5 text-right">&nbsp(38 Preguntas)</label>
+            </div>
+            <div class="modal-body" ng-model="oQuestion">
+              <form>
+                <label>{{oQuestion.i_question }}. Pregunta: {{oQuestion.vc_question}}</label>
+                <div ng-repeat="options in oQuestion.a_options" >
+                  <label class="btn btn-primary-green"><input type="radio" name="optionAnswer" ng-model="oQuestion.value" value="{{options.value}}">&nbsp;{{options.option}}</label>
+                </div>
+              <button class="btn btn-primary-continuar btn-lg" ng-disabled="!oQuestion.value" ng-click="sendAnswer()">Continuar</button><br>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -5,9 +5,8 @@ defined('MAINTENANCE_PATH')
     || define('MAINTENANCE_PATH', realpath(dirname(__FILE__) . '/../maintenance'));
 
 // Define maintenance environment
-
 defined('MAINTENANCE_ENV')
-    || define('MAINTENANCE_ENV', (getenv('MAINTENANCE_ENV') ? getenv('MAINTENANCE_ENV') : 'qa'));
+    || define('MAINTENANCE_ENV', (getenv('MAINTENANCE_ENV') ? getenv('MAINTENANCE_ENV') : 'dev'));
 
 // Ensure library/ is on include_path
 //library is already included in php.ini

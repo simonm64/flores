@@ -24,6 +24,7 @@
           <actionMethod actionName="completo"/>
           <actionMethod actionName="getQuestion"/>
           <actionMethod actionName="terminado"/>
+          <actionMethod actionName="ninos"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -98,6 +99,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Test">
             <viewScriptFile forActionName="terminado"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Test">
+            <viewScriptFile forActionName="ninos"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Test">
+            <viewScriptFile forActionName="ninos"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

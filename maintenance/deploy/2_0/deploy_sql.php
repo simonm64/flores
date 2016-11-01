@@ -16,8 +16,8 @@ if(!in_array('group',array_keys($aOptions))){
 
 #TESTS table
 $oDbDeploy->createGroup("tests");
-$oDbDeploy->add('apply_dml', "INSERT INTO TESTS (VC_NME_TST) VALUES ('Cuestionario para Niños')");
-$oDbDeploy->add('revert_dml', "DELETE FROM TESTS WHERE VC_NME_TST = 'Cuestionario para Niños'");
+$oDbDeploy->add('apply_dml', "INSERT INTO TESTS (VC_NME_TST) VALUES ('Cuestionario Niños')");
+$oDbDeploy->add('revert_dml', "DELETE FROM TESTS WHERE VC_NME_TST = 'Cuestionario Niños'");
 $oDbDeploy->add('revert_dml', "ALTER TABLE TESTS AUTO_INCREMENT = 3;");
 
 #QUESTIONS table
