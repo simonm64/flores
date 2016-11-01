@@ -31,9 +31,30 @@ class db_deploy {
 	}
 	
 	public function execute($aOptions){
+		if($aOptions['group'] == 'all'){
+			echo("EXECUTING all statements:.................\n");
+			foreach ($this->aStatements as $sGroup => $aGroup){
+				echo("Group --> ".$sGroup."\n");
+				if(in_array($aOptions['mode'], array_keys($aGroup))){
+					foreach($aGroup[$aOptions['mode']] as $sSql){
+							try{
+							echo("EXECUTING: ----| ".substr($sSql,0,70)." ...\n");
+							$oQuery = $this->oDb->query($sSql);
+							} catch(Zend_Exception $e){
+									echo($e->getMessage()."\n");
+									return;
+							}	
+					}
+				}
+				else
+					echo("No ".$aOptions['mode']." mode for ".$sGroup."\n");
+			}
+			return;
+		}
+		
 		if(!in_array($aOptions['group'], array_keys($this->aStatements))){
 			echo("Group '{$aOptions['group']}' not found\n");
-			die(1);	
+			return;	
 		}
 		
 		foreach ($this->aStatements[$aOptions['group']][$aOptions['mode']] as $sSql){
@@ -42,7 +63,7 @@ class db_deploy {
 				$oQuery = $this->oDb->query($sSql);
 			} catch(Zend_Exception $e){
 					echo($e->getMessage()."\n");
-					die(1);
+					return;
 			}
 		}
 	}
