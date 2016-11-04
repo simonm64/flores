@@ -165,6 +165,7 @@ class Application_Model_User
     //calculate results
     $sSql = "SELECT DISTINCT
                 Q.ID_PRDCT,
+                P.I_PRDCT,
                 P.VC_PRDCT_TTL,
                 P.TXT_PRDCT_DSCRPTN,
                 UR.I_GRP,
@@ -213,7 +214,7 @@ class Application_Model_User
         }else{
           $high = "";
         }
-        $sProducts .= $i.$high.'.- <b>Flor N&uacute;mero '.$r['ID_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'</b>". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
+        $sProducts .= $i.$high.'.- <b>Flor N&uacute;mero '.$r['I_PRDCT'].':'. ' "'.utf8_decode($r['VC_PRDCT_TTL']).'</b>". '.utf8_decode($r['TXT_PRDCT_DSCRPTN']);
         $sProducts .= '</p>';
         $i++;
       }
