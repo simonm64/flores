@@ -203,8 +203,11 @@ class Application_Model_User
       $sBodyText = "Resultados del test '".utf8_decode($aTestInfo['title'])."'<br>";
       $sBodyText .= "Nombre: ".utf8_decode($sName)."<br>";
       $sBodyText .= "Email: ".$sEmail."<br>";
-      $sBodyText .= "Movil: ".$sTel."<br>"; 
-      $sBodyText .= "<p>Hola, recibe un cordial saludo!! La siguiente lista muestra las flores m&aacute;s necesarias para ti en orden de mayor a menor prioridad</p>";
+      $sBodyText .= "Movil: ".$sTel."<br>";
+			if($iTest == 3)
+				$sBodyText .= "<p>Hola, recibe un cordial saludo!! La siguiente lista muestra las flores m&aacute;s necesarias para el ni&ntildeo/a en orden de mayor a menor prioridad</p>";
+			else
+				$sBodyText .= "<p>Hola, recibe un cordial saludo!! La siguiente lista muestra las flores m&aacute;s necesarias para ti en orden de mayor a menor prioridad</p>";
       $sProducts = '<p>';
       $i = 1;
       foreach($aResults as $r){
