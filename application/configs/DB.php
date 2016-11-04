@@ -11,7 +11,7 @@ abstract class FloresDB extends Zend_Db_Adapter_Abstract{
   
   public static function conn(){
     
-    $config = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'staging');
+    $config = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', APPLICATION_ENV);
     
     try {
       
