@@ -209,7 +209,7 @@ class Application_Model_User
       $i = 1;
       foreach($aResults as $r){
         $sProducts .= '<p>';
-        if(($iTest == 1 && $r['I_VALUE']>=2) ||($iTest == 2 && $r['I_VALUE']>=4 )){
+        if((($iTest == 1  || $iTest == 3) && $r['I_VALUE']>=2) || ($iTest == 2 && $r['I_VALUE']>=4 )){
           $high = "<b>(*)</b>";
         }else{
           $high = "";
