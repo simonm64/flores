@@ -1,18 +1,8 @@
 <?php
+include realpath(dirname(__FILE__) . '/../includes.php');
 require realpath(dirname(__FILE__) . '/../../bootstrap.php');
 require realpath(dirname(__FILE__) . '/../../classes/db_deploy.php');
 $oDbDeploy = new db_deploy();
-#var_dump($oDbDeploy);
-#var_dump($oDbDeploy->execute("SELECT * FROM USERS LIMIT 1"));
-$aOptions = getopt('',array('mode:','group:'));
-if(!in_array('mode', array_keys($aOptions))){
-	echo("Include the mode to execute --mode\n");
-	die(1);
-}
-if(!in_array('group',array_keys($aOptions))){
-	echo("Include the group to execute --group\n");
-	die(1);
-}
 
 #TESTS table
 $oDbDeploy->createGroup('tests');
