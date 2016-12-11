@@ -23,16 +23,22 @@ GRANT SELECT,INSERT,UPDATE ON FLOWERS.* TO 'floresdbu'@'127.0.0.1' WITH GRANT OP
 ----------
 -Run ddl's with deploy_sql
 -Open the file and follow order.	
-	php maintenance/deploy/1_0/deploy_sql.php --mode apply_ddl --group #each one
+	php maintenance/deploy/1_0/deploy_sql.php --mode apply_ddl --group all --env dev
+	Options for --mode: apply_ddl, revert_ddl
+    Options for --group: You can choose the groups looking at the deployment_sql.php file for granular deployment
+    Options for --env: dev, qa, uat, prod
 ----------
 
 ----------
 -Run dml's with deploy_sql
-	sudo php maintenance/deploy/1_0/deploy_sql.php --mode apply_dml --group #each one
+	php maintenance/deploy/1_0/deploy_sql.php --mode apply_dml --group all --env dev
+	Options for --mode: apply_dml, revert_dml
+    Options for --group: You can choose the groups looking at the deployment_sql.php file for granular deployment
+    Options for --env: dev, qa, uat, prod
 ----------
 
 ----------
--Check the database is in place with data correcty
+-Check the database is in place with data correctly
 ----------
 
 SYS ADMIN
