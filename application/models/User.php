@@ -236,8 +236,9 @@ class Application_Model_User
       $sBodyText .= "<p>";
       $sBodyText .= "Costo del frasco de 30ml: $150 pesos mexicanos<br>";
       $sBodyText .= "Forma de pago: <br>";
-      $sBodyText .= "1.-por  Dep&oacute;sito en Banamex. Si eliges esta opci&oacute;n responde a este email solicitando el n&uacute;mero de cuenta<br>";
+      $sBodyText .= "1.- por Dep&oacute;sito en Oxxo. Si eliges esta opci&oacute;n responde a este email solicitando el n&uacute;mero de tarjeta<br>";
       $sBodyText .= "2.- En efectivo al entregar el producto (opci&oacute;n v&aacute;lida solo si este producto te fue ofrecido personalmente por un vendedor nuestro y ordenaste la compra)<br>";
+      $sBodyText .= "3.- Por Mercado Libre M&eacute;xico<br>";
       $sBodyText .= "</p>";
       
       $sBodyText .= "<p>";
