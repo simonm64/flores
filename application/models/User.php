@@ -241,12 +241,12 @@ class Application_Model_User
       $sBodyText .= "3.- Por Mercado Libre M&eacute;xico<br>";
       $sBodyText .= "</p>";
       
-      $sBodyText .= "<p>";
-      $sBodyText .= "Entrega del producto en Saltillo Coahuila:<br>";
-      $sBodyText .= "A tu domicilio, lugar de trabajo, lugar donde te fue ofrecido el producto, o lugar acordado, seg&uacute;n tu elecci&oacute;n<br>";
-      $sBodyText .= "</p>";
+      #$sBodyText .= "<p>";
+      #$sBodyText .= "Entrega del producto en Saltillo Coahuila:<br>";
+      #$sBodyText .= "A tu domicilio, lugar de trabajo, lugar donde te fue ofrecido el producto, o lugar acordado, seg&uacute;n tu elecci&oacute;n<br>";
+      #$sBodyText .= "</p>";
 
-      $sBodyText .= "<p>Entregas al resto de la rep&uacute;blica mexicana: por Aero flash</p>";
+      #$sBodyText .= "<p>Entregas al resto de la rep&uacute;blica mexicana: por Aero flash</p>";
       $sBodyText .= "<p>Saludos!!!!</p>";
       
       $mail = new Zend_mail();
