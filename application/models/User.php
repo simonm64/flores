@@ -65,7 +65,7 @@ class Application_Model_User
   {
     $iUserId = self::getUserByEmail($sEmail);
     if($iUserId > 0){
-      $vAffected = self::updateUser($sName,$sEmail,$iUserId);
+      $vAffected = self::updateUser($sName,$sEmail,$sData,$iUserId);
       if(!is_numeric($vAffected)){
         return $vAffected;
       }
