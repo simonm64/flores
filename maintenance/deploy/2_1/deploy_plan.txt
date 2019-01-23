@@ -1,0 +1,53 @@
+---
+Flores de Bach
+V 2.1
+Deployment Plan
+-----
+
+DBA
+----------
+-Run ddl's with deploy_sql
+-Open the file and follow order.	
+	php maintenance/deploy/2_1/deploy_sql.php --mode apply_ddl --group countrt --env dev
+	Options for --mode: apply_ddl, revert_ddl
+	Options for --group: You can choose the groups looking at the deployment_sql.php file for granular deployment
+	Options for --env: dev, qa, uat, prod
+----------
+
+----------
+-Run dml's with deploy_sql
+	php maintenance/deploy/2_1/deploy_sql.php --mode apply_dml --group country --env dev
+    Options for --mode: apply_dml, revert_dml
+    Options for --group: You can choose the groups looking at the deployment_sql.php file for granular deployment
+    Options for --env: dev, qa, uat, prod
+----------
+
+----------
+-Check the database is in place with data correcty
+----------
+
+SYS ADMIN
+----------
+-Pull all the files from repository
+	sudo git pull;
+----------
+
+END USER
+---------
+-Navigate the web
+---------
+
+---------
+-Test the Test Basico
+-Verify is sending emails with the right information
+---------
+
+---------
+-Test the Test Completo
+-Verify is sending emails with the right information
+---------
+
+---------
+-Test the Test para Niños
+-Verify is sending emails with the right information
+---------

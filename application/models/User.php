@@ -61,7 +61,7 @@ class Application_Model_User
     return ($this->oDB->lastInsertId());
   }
 
-  public function upsertUser($sName, $sEmail)
+  public function upsertUser($sName, $sEmail, $sData)
   {
     $iUserId = self::getUserByEmail($sEmail);
     if($iUserId > 0){
@@ -70,7 +70,7 @@ class Application_Model_User
         return $vAffected;
       }
     }else{
-      $iUserId = self::insertUser($sName, $sEmail);
+      $iUserId = self::insertUser($sName, $sEmail, $sData);
     }
     return $iUserId;
   }
@@ -89,10 +89,11 @@ class Application_Model_User
     return (int)$iResult;
   }
 
-  public function updateUser($sName, $sEmail, $iUserId)
+  public function updateUser($sName, $sEmail, $sData, $iUserId)
   {
     $data = array(
       'VC_NAME' => $sName,
+      'JSON_DATA' => $sData
     );
 
     $where['ID_USR = ?'] = $iUserId;
@@ -107,12 +108,11 @@ class Application_Model_User
     return $iAffected;
   }
 
-  public function insertUser($sName, $sEmail)
+  public function insertUser($sName, $sEmail, $sData)
   {
     $data = array('VC_EMAIL'=>$sEmail,
-                  'VC_NAME'=>$sName
-                  );
-
+                  'VC_NAME'=>$sName,
+                  'JSON_DATA'=>$sData);
     try{
       $this->oDB->insert('USERS', $data);
     } catch(Zend_Exception $e){
@@ -194,7 +194,7 @@ class Application_Model_User
     return $aResults;
   }
 
-  public function sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel)
+  public function sendResultsEmail($aResults, $iTest, $sName, $sEmail, $sTel, $sCountry)
   {
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
@@ -203,6 +203,7 @@ class Application_Model_User
       $sBodyText = "Resultados del test '".utf8_decode($aTestInfo['title'])."'<br>";
       $sBodyText .= "Nombre: ".utf8_decode($sName)."<br>";
       $sBodyText .= "Email: ".$sEmail."<br>";
+      $sBodyText .= "Pais: ".$sCountry."<br>";
       $sBodyText .= "Movil: ".$sTel."<br>";
 			if($iTest == 3)
 				$sBodyText .= "<p>Hola, recibe un cordial saludo!! La siguiente lista muestra las flores m&aacute;s necesarias para el ni&ntildeo/a en orden de mayor a menor prioridad</p>";

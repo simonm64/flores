@@ -45,6 +45,10 @@ class UserController extends Zend_Controller_Action
         $sEmail = $this->oRequest->getPost('email');
         if($this->oRequest->getPost('phoneNumber')){
           $sTel = $this->oRequest->getPost('phoneNumber');
+        //Other information in json
+        $aData=array();
+        $aData["country"] = $this->oRequest->getPost('country');
+        $sData = json_encode($aData);
         }else{
           $sTel = "";
         }
@@ -55,7 +59,7 @@ class UserController extends Zend_Controller_Action
         exit;
       }
     }else{
-      $this->_helper->viewRenderer->setNoRender(true);
+      this->_helper->viewRenderer->setNoRender(true);
       $aData = array("success" => false, "msg" => "Bad Data");
       $this->_helper->json($aData);
       exit;
@@ -76,7 +80,7 @@ class UserController extends Zend_Controller_Action
       exit;
     }
 
-    $vUserId = $this->oUserModel->upsertUser($sName,$sEmail);
+    $vUserId = $this->oUserModel->upsertUser($sName, $sEmail, $sData);
     if(is_numeric($vUserId)){
       //get results
       $aResults = $this->oUserModel->getResults($vUserId,$iTest);
@@ -86,7 +90,7 @@ class UserController extends Zend_Controller_Action
         exit;
       }
       //send email to admin with results
-      $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel);
+      $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aData["country"]);
       if($vSent){
         self::kill_session_cookie();
         $aData = array('success'=>true, 'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto');

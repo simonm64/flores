@@ -66,6 +66,7 @@ app.controller('UserCtrl', function($scope, $http, $window){
         firstName:$scope.firstName,
         lastName: $scope.lastName,
         email:$scope.email,
+        country:$scope.country,
         phoneNumber:$scope.phoneNumber}),
       headers: {
         'X-Requested-With':'XMLHttpRequest',
