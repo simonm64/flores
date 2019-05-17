@@ -1,4 +1,5 @@
 var app = angular.module('floresTest', []);
+
 app.controller('testCtrl', function($scope, $http, $window){
   $scope.init = function (id){
     $scope.id_test = id;
@@ -82,6 +83,40 @@ app.controller('UserCtrl', function($scope, $http, $window){
         $scope.Message = response.data.msg;
       }
       //$scope.oQuestion.value = 2;
+    }, function Error(response){
+      $scope.myWelcome = response.statusText;
+    });
+  }
+});
+
+
+app.controller('StoreCtrl', function($scope, $http, $window){
+  $scope.sendAddress= function(){
+    $http({
+      method : "POST",
+      url : "/store/send-address",
+      data:$.param({
+        firstName:$scope.firstName,
+        lastName:$scope.lastName,
+        email:$scope.email,
+        street:$scope.street,
+        area:$scope.colonia,
+        zip:$scope.zip,
+        country:$scope.country,
+        phoneNumber:$scope.phoneNumber}),
+      headers: {
+        'X-Requested-With':'XMLHttpRequest',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+    }).then(function Succes(response){
+      //console.log(response);
+      if(response.data.success==true) {
+        //here the questions are finished. Need to display a view (modal)
+        alert(response.data.msg);
+        $window.location = 'http://'+$window.location.host+'/';
+      }else{
+        $scope.Message = response.data.msg;
+      }
     }, function Error(response){
       $scope.myWelcome = response.statusText;
     });

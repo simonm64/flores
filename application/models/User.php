@@ -196,6 +196,7 @@ class Application_Model_User
 
   public function sendResultsEmail($aResults, $iTest, $sName, $sEmail, $sTel, $sCountry)
   {
+    var_dump($sCountry);
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
     if(count($aResults)>0){
@@ -260,7 +261,7 @@ class Application_Model_User
       $mail->setSubject($sSubject); 
 
       try{
-        $sent = $mail->send();
+        #$sent = $mail->send();
       } catch(Zend_Mail_Transport_Exception $e){
        $exception = $e->getMessage();
        self::mailAdmin('Error sending email', 'Error with user $sEmail in test $iTest</b> Exception: <p>$exception</p>');
@@ -282,7 +283,7 @@ class Application_Model_User
       //$mail->addTo("floresdebach33@yahoo.com");
       $mail->addTo("smartinez@svam.com");
       $mail->setSubject('Activity Log');
-      $sent = $mail->send();
+      #$sent = $mail->send();
   }
 
 }
