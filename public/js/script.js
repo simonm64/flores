@@ -101,6 +101,8 @@ app.controller('StoreCtrl', function($scope, $http, $window){
         email:$scope.email,
         street:$scope.street,
         area:$scope.colonia,
+        city:$scope.city,
+        state:$scope.state,
         zip:$scope.zip,
         country:$scope.country,
         phoneNumber:$scope.phoneNumber}),

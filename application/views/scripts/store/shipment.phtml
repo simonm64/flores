@@ -40,7 +40,6 @@
           <span ng-show="form.street.$dirty && form.street.$error.required" class="help-block">Ingrese Calle y Numero</span>
         </div>
 
-
         <div class="form-group row" ng-class="{ 'has-error': form.colonia.$dirty && form.colonia.$error.required }">
           <label class="col-sm-4 form-control-label" for="colonia">Colonia/Area</label>
           <div class="col-sm-8">
@@ -48,6 +47,55 @@
           </div>
           <span ng-show="form.colonia.$dirty && form.colonia.$error.required" class="help-block">Ingrese Colonia</span>
         </div>
+
+        <div class="form-group row" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+          <label class="col-sm-4 form-control-label" for="city">Ciudad</label>
+          <div class="col-sm-8">
+            <input type="text" name="city" id="city" class="form-control" ng-model="city" required />
+          </div>
+          <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">Ingrese Ciudad</span>
+        </div>
+
+        <div class="form-group row" ng-class="{ 'has-error': form.state.$dirty && form.state.$error.required }">
+          <label class="col-sm-2 form-control-label" for="state">Estado</label>
+          <div class="col-sm-10">
+            <select label="State" id="state" name="state" ng-model="state" ng-init='state="Aguascalientes"' required >                          
+              <option value="Aguascalientes">Aguascalientes</option>
+              <option value="Baja California">Baja California</option>
+              <option value="Baja California Sur">Baja California Sur</option>
+              <option value="Campeche">Campeche</option>
+              <option value="Chiapas">Chiapas</option>
+              <option value="Chihuahua">Chihuahua</option>
+              <option value="Coahuila">Coahuila</option>
+              <option value="Colima">Colima</option>
+              <option value="Distrito Federal">Distrito Federal</option>
+              <option value="Durango">Durango</option>
+              <option value="Estado de Mexico">Estado de México</option>
+              <option value="Guanajuato">Guanajuato</option>
+              <option value="Guerrero">Guerrero</option>
+              <option value="Hidalgo">Hidalgo</option>
+              <option value="Jalisco">Jalisco</option>
+              <option value="Michoacan">Michoacán</option>
+              <option value="Morelos">Morelos</option>
+              <option value="Nayarit">Nayarit</option>
+              <option value="Nuevo Leon">Nuevo León</option>
+              <option value="Oaxaca">Oaxaca</option>
+              <option value="Puebla">Puebla</option>
+              <option value="Queretaro">Querétaro</option>
+              <option value="Quintana Roo">Quintana Roo</option>
+              <option value="San Luis Potosí">San Luis Potosí</option>
+              <option value="Sinaloa">Sinaloa</option>
+              <option value="Sonora">Sonora</option>
+              <option value="Tabasco">Tabasco</option>
+              <option value="Tamaulipas">Tamaulipas</option>
+              <option value="Tlaxcala">Tlaxcala</option>
+              <option value="Veracruz">Veracruz</option>
+              <option value="Yucatan">Yucatán</option>
+              <option value="Zacatecas">Zacatecas</option>
+            </select>
+          </div>
+          <span ng-show="form.state.$dirty && form.state.$error.required" class="help-block">Seleccione Estado</span>
+        </div>    
 
         <div class="form-group row" ng-class="{ 'has-error': form.zip.$dirty && form.zip.$error.required }">
           <label class="col-sm-4 form-control-label" for="street">Codigo Postal</label>

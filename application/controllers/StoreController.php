@@ -26,8 +26,7 @@ class StoreController extends Zend_Controller_Action
 
 	}
 
-	public function sendAddressAction(){
-		session_start();
+	public function sendAddressAction(){		
     	if($this->oRequest->isXmlHttpRequest()){
 			if ($this->oRequest->isPost()){
 				$sName = $this->oRequest->getPost('firstName');
@@ -35,6 +34,8 @@ class StoreController extends Zend_Controller_Action
 				$sEmail = $this->oRequest->getPost('email');
 				$aCustomerData['street'] = $this->oRequest->getPost('street');
 				$aCustomerData['area'] = $this->oRequest->getPost('area');
+				$aCustomerData['city'] = $this->oRequest->getPost('city');
+				$aCustomerData['state'] = $this->oRequest->getPost('state');
 				$aCustomerData['zip'] = $this->oRequest->getPost('zip');
 				$aCustomerData['country'] = $this->oRequest->getPost('country');
 				$sTel = $this->oRequest->getPost('phoneNumber');
