@@ -76,7 +76,7 @@ class Application_Model_User
   }
 
   public function getUserbyEmail($sEmail)
-  { 
+  {
     $sSql = "SELECT
                 ID_USR
             FROM USERS
@@ -87,6 +87,22 @@ class Application_Model_User
       return 0;
 
     return (int)$iResult;
+  }
+
+  public function getUserbyId($iUserId){
+    $sSql = "SELECT
+                ID_USR,
+                VC_EMAIL,
+                VC_NAME,
+                JSON_DATA
+            FROM USERS
+            WHERE ID_USR = ?";
+    $aUser = $this->oDB->fetchRow($sSql,array($iUserId));
+    
+    if(!$aUser)
+      return 0;
+
+    return $aUser;
   }
 
   public function updateUser($sName, $sEmail, $sData, $iUserId)
@@ -194,14 +210,82 @@ class Application_Model_User
     return $aResults;
   }
 
+
+  public function saveTestResultsHtml($iUserId, $iTest, $sHtml){
+
+    #Make the results data an array
+    $aResults = array(
+        $iTest => array(
+           'resultsHtml'=> htmlentities(utf8_encode($sHtml)),
+           'sessionId'=>session_id(),
+        ),
+    );
+
+    #get the json data and make it an array
+    $aUserData = self::getUserbyId($iUserId);
+    
+    #Check and pull existing results array
+    if(is_array($aUserData)){
+      $aUserJson = json_decode($aUserData['JSON_DATA'], true);
+    }
+
+    if(array_key_exists('testResults', $aUserJson)){
+      $aCurrentResults = $aUserJson['testResults'];      
+      #Append the new test results array  
+      $aResults = $aResults + $aCurrentResults; 
+    }
+        
+    return self::updateUserJson($iUserId, 'testResults', $aResults);
+  }
+
+  /*This is special because it has to retrieve what is currently in the json and then 
+  stack the new content into the same content*/
+  public function updateUserJson($iUserId, $sKey, $aJson){
+    #get the json data and make it an array
+    $aUserData = self::getUserbyId($iUserId);
+
+    if(is_array($aUserData)){
+      $aUserJson = json_decode($aUserData['JSON_DATA'], true);
+    }else{
+      return 0;
+    }
+
+    #stack the new array into the existing
+    $aUserJson[$sKey] = $aJson;
+    $sUserJson = json_encode($aUserJson);
+
+    #update with the new array
+    return self::updateUser($aUserData['VC_NAME'], $aUserData['VC_EMAIL'], $sUserJson, $iUserId);
+  }
+
+
+  public function getResultsHtml($iUserId, $iTest){
+
+    #fetch the user Row array
+    $aUserData = self::getUserbyId($iUserId);
+
+    #Extract the testResults Key values from the Json Data
+    $aUserJson = json_decode($aUserData['JSON_DATA'], true);
+
+    if(array_key_exists('testResults', $aUserJson)){
+      #Decode the results html and return html string
+      $sHtml = $aUserJson['testResults'][$iTest]['resultsHtml'];
+      if(empty($sHtml)){
+        $sHtml = "<h2>No se encontraron resultados de su cuestionario</h2>";
+      }
+    }else{
+      $sHtml = "<h2>No se encontraron resultados de su cuestionario</h2>";
+    }
+    return $sHtml;
+  }
+
   public function sendResultsEmail($aResults, $iTest, $sName, $sEmail, $sTel, $sCountry)
   {
-    var_dump($sCountry);
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
     if(count($aResults)>0){
       $sSubject = "Resultados del test ".utf8_decode($aTestInfo['title'])." de ".$sName;
-      $sBodyText = "Resultados del test '".utf8_decode($aTestInfo['title'])."'<br>";
+      $sBodyText = "<h2>Resultados del test '".utf8_decode($aTestInfo['title'])."'</h2><br>";
       $sBodyText .= "Nombre: ".utf8_decode($sName)."<br>";
       $sBodyText .= "Email: ".$sEmail."<br>";
       $sBodyText .= "Pais: ".$sCountry."<br>";
@@ -267,7 +351,8 @@ class Application_Model_User
        self::mailAdmin('Error sending email', 'Error with user $sEmail in test $iTest</b> Exception: <p>$exception</p>');
        return false;
       }
-      return true;
+      #return true;
+      return $sBodyText;
     }else{
       return 'No hay resultados que enviar';
     }

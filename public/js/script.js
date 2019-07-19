@@ -78,7 +78,7 @@ app.controller('UserCtrl', function($scope, $http, $window){
       if(response.data.success==true) {
         //here the questions are finished. Need to display a view (modal)
         alert(response.data.msg);
-        $window.location = 'http://'+$window.location.host+'/';
+        $window.location = 'http://'+$window.location.host+'/test/resultados';
       }else{
         $scope.Message = response.data.msg;
       }

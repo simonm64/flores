@@ -8,7 +8,7 @@ DBA
 ----------
 -Run ddl's with deploy_sql
 -Open the file and follow order.	
-	php maintenance/deploy/2_1/deploy_sql.php --mode apply_ddl --group countrt --env dev
+	php maintenance/deploy/2_1/deploy_sql.php --mode apply_ddl --group country --env dev
 	Options for --mode: apply_ddl, revert_ddl
 	Options for --group: You can choose the groups looking at the deployment_sql.php file for granular deployment
 	Options for --env: dev, qa, uat, prod

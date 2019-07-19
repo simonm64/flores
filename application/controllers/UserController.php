@@ -6,6 +6,7 @@ class UserController extends Zend_Controller_Action
   private $oUserModel;
   private $oEmailValidator;
   private $oTelValidator;
+  public $oUserSesion;
   public function init()
   {
     /* Initialize action controller here */
@@ -15,6 +16,9 @@ class UserController extends Zend_Controller_Action
     $this->oEmailValidator->setMessage('El correo ingresado no es valido. Intente de nuevo, solo con numeros sin espacios.');
     $this->oTelValidator = new Zend_Validate_Regex(array('pattern' => '/^[0-9 ]+$/'));
     $this->oTelValidator->setMessage("El numero de telefono ingresado no es valido.");
+
+    Zend_Session::start();
+    $this->oUserSession = new Zend_Session_Namespace('control');
   }
 
   public function indexAction()
@@ -31,12 +35,12 @@ class UserController extends Zend_Controller_Action
   {
     //get the results
     $oTestModel = new Application_Model_Test();
-    $aResults = $oTestModel->getResults($iIdUser, $iIdTest);
+    $aResults = $oTestModel->getResults($iIdUser, $iIdTest); 
   }
 
   public function registerUserAction()
   {
-    session_start();
+    #session_start();
     if($this->oRequest->isXmlHttpRequest()){
       if ($this->oRequest->isPost()){
         $iTest = $this->oRequest->getPost('iTest');
@@ -90,10 +94,21 @@ class UserController extends Zend_Controller_Action
         exit;
       }
       //send email to admin with results
-      $vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aJson["country"]);
-      if($vSent){
-        self::kill_session_cookie();
+      #$vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aJson["country"]);
+      $vResults = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aJson["country"]);
+      if($vResults){
+        #self::kill_session_cookie();
+
+        #Save in the database
+        $iSaved = $this->oUserModel->saveTestResultsHtml($vUserId,$iTest,$vResults);
+
+        $this->oUserSession->id = $vUserId;
+        $this->oUserSession->test = (int)$iTest;
+        
         $aData = array('success'=>true, 'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto');
+        #Send to the results page
+        #$this->view->sResults = $vResults;
+        #echo ($this->view->render('test/resultados.phtml'));
       }else{
         $aData = array('success'=>false,'msg'=>'No se pudo enviar la notificacion al administrador. Favor de ponerse en contacto con el.');
       }

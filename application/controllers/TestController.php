@@ -127,6 +127,26 @@ class TestController extends Zend_Controller_Action
 			$this->view->iTestId = 3;
     }
 
+		public function resultadosAction(){
+			
+			#new user model instance
+			$this->oUserModel = new Application_Model_User();
+
+			$userDetails = new Zend_Session_Namespace('control');
+			
+			if(isset($userDetails->id) && isset($userDetails->test)){
+				$vResults = $this->oUserModel->getResultsHtml($userDetails->id, $userDetails->test);
+			}else{
+				$vResults = "<h2>No hay resultados para este cuestionario</h2>";
+			}
+
+			#Assign the text results to view
+			$this->view->sResults = $vResults;
+
+			#display the view.
+
+
+		}
 
 }
 
