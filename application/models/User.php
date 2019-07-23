@@ -307,16 +307,23 @@ class Application_Model_User
         $sProducts .= '</p>';
         $i++;
       }
+      
+      $sBodyTextPage = "";  
 
       $sProducts .= '</p>';
       $sBodyText .= $sProducts;
+      $sBodyTextPage .= $sBodyText.$sProducts;
       $sBodyText .= "<p>IMPORTANTE:";
+      $sBodyTextPage .= "<p>IMPORTANTE:";
       $sBodyText .= "-Para una mayor efectividad de la terapia floral, deben incluirse m&aacute;ximo 6 flores(esencias) por frasco<br>";
+      $sBodyTextPage .= "-Para una mayor efectividad de la terapia floral, deben incluirse m&aacute;ximo 6 flores(esencias) por frasco</p>";
       $sBodyText .= "-Lo m&aacute;s recomendable para iniciar el tratamiento floral es tomar 6 de las primeras 10 flores de la lista.";
       $sBodyText .= " De esta forma se corregir&aacute;n los aspectos negativos m&aacute;s pronunciados de tu persona,";
       $sBodyText .= " y conforme dichos aspectos se vayan erradicando, podr&iacute;amos continuar con una segunda f&oacute;rmula de 6 flores en segundo lugar de importancia de la lista";
       $sBodyText .= "</p>";
       $sBodyText .= "<p>Modo de administraci&oacute;n: 4 gotas bajo la lengua, 4 veces al dia</p>";
+      $sBodyTextPage .= "<p><b>Frasco de 30ml</b><br>";
+      $sBodyTextPage .= "Modo de administraci&oacute;n: 4 gotas bajo la lengua, 4 veces al dia</p>";
       $sBodyText .= "<p>Duraci&oacute;n aproximada del frasco: 25 d&iacute;as</p>";
       $sBodyText .= "<p>Si decides la compra, estas son las formas de pago y entrega:</p>";
       $sBodyText .= "<p>";
@@ -352,7 +359,7 @@ class Application_Model_User
        return false;
       }
       #return true;
-      return $sBodyText;
+      return $sBodyTextPage;
     }else{
       return 'No hay resultados que enviar';
     }
