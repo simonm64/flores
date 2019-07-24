@@ -77,7 +77,10 @@ class StoreController extends Zend_Controller_Action
 		}		
 		$this->_helper->json($aData);
 		exit();
+	}
 
+	public function thankYouAction(){
+		//just display the thank you page.
 	}
 }
 

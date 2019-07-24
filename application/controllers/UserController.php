@@ -97,8 +97,6 @@ class UserController extends Zend_Controller_Action
       #$vSent = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aJson["country"]);
       $vResults = $this->oUserModel->sendResultsEmail($aResults,$iTest,$sName,$sEmail,$sTel,$aJson["country"]);
       if($vResults){
-        #self::kill_session_cookie();
-
         #Save in the database
         $iSaved = $this->oUserModel->saveTestResultsHtml($vUserId,$iTest,$vResults);
 
@@ -106,9 +104,7 @@ class UserController extends Zend_Controller_Action
         $this->oUserSession->test = (int)$iTest;
         
         $aData = array('success'=>true, 'msg'=>'Sus resultados fueron enviados al administrador. El se pondra en contacto');
-        #Send to the results page
-        #$this->view->sResults = $vResults;
-        #echo ($this->view->render('test/resultados.phtml'));
+        
       }else{
         $aData = array('success'=>false,'msg'=>'No se pudo enviar la notificacion al administrador. Favor de ponerse en contacto con el.');
       }
