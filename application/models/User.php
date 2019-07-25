@@ -345,7 +345,7 @@ class Application_Model_User
       $mail = new Zend_mail();
       $tr = new Zend_Mail_Transport_Smtp('localhost');
       $mail->setDefaultTransport($tr);
-      $mail->setBodyHtml($sBodyText);
+      $mail->setBodyHtml($sBodyTextPage);
       $mail->setFrom("ubuntu@mail.floresdebach33.com", "Administracion Flores");
       $mail->addTo("floresdebach33@yahoo.com");
       $mail->addBcc("smartinez@svam.com");
