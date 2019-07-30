@@ -352,7 +352,7 @@ class Application_Model_User
       $mail->setSubject($sSubject); 
 
       try{
-        $sent = $mail->send();
+        #$sent = $mail->send();
       } catch(Zend_Mail_Transport_Exception $e){
        $exception = $e->getMessage();
        self::mailAdmin('Error sending email', 'Error with user $sEmail in test $iTest</b> Exception: <p>$exception</p>');
