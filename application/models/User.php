@@ -311,7 +311,7 @@ class Application_Model_User
       $sBodyTextPage = "";  
 
       $sProducts .= '</p>';
-      $sBodyText .= $sProducts;
+      #$sBodyText .= $sProducts;
       $sBodyTextPage .= $sBodyText.$sProducts;
       $sBodyText .= "<p>IMPORTANTE:";
       $sBodyTextPage .= "<p>IMPORTANTE:";
