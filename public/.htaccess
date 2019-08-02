@@ -1,4 +1,9 @@
 
+
+RewriteEngine On
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
 # exists, simply serve it.
@@ -15,3 +20,4 @@ RewriteRule ^.*$ - [NC,L]
 RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::$
 RewriteRule ^(.*)$ - [E=BASE:%1]
 RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
+
