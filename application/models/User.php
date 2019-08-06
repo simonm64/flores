@@ -313,7 +313,7 @@ class Application_Model_User
       $sProducts .= '</p>';
       #$sBodyText .= $sProducts;
       $sBodyTextPage .= $sBodyText.$sProducts;
-      $sBodyText .= "<p>IMPORTANTE:";
+      /*$sBodyText .= "<p>IMPORTANTE:";
       $sBodyTextPage .= "<p>IMPORTANTE:";
       $sBodyText .= "-Para una mayor efectividad de la terapia floral, deben incluirse m&aacute;ximo 6 flores (esencias) por frasco.<br>";
       $sBodyTextPage .= "-Para una mayor efectividad de la terapia floral, deben incluirse m&aacute;ximo 6 flores(esencias) por frasco.</p>";
@@ -333,7 +333,7 @@ class Application_Model_User
       $sBodyText .= "2.- En efectivo al entregar el producto (opci&oacute;n v&aacute;lida solo si este producto te fue ofrecido personalmente por un vendedor nuestro y ordenaste la compra)<br>";
       $sBodyText .= "3.- Por Mercado Libre M&eacute;xico<br>";
       $sBodyText .= "</p>";
-      
+      */
       #$sBodyText .= "<p>";
       #$sBodyText .= "Entrega del producto en Saltillo Coahuila:<br>";
       #$sBodyText .= "A tu domicilio, lugar de trabajo, lugar donde te fue ofrecido el producto, o lugar acordado, seg&uacute;n tu elecci&oacute;n<br>";
