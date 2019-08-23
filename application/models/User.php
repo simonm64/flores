@@ -284,7 +284,7 @@ class Application_Model_User
     $this->oTest = new Application_Model_Test();
     $aTestInfo = $this->oTest->getTestInfo($iTest);
     if(count($aResults)>0){
-      $sSubject = "Resultados del test ".utf8_decode($aTestInfo['title'])." de ".$sName;
+      $sSubject = "Resultados del test ".utf8_decode($aTestInfo['title']." de ".$sName);
       $sBodyText = "<h2>Resultados del test '".utf8_decode($aTestInfo['title'])."'</h2><br>";
       $sBodyText .= "Nombre: ".utf8_decode($sName)."<br>";
       $sBodyText .= "Email: ".$sEmail."<br>";
