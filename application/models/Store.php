@@ -27,7 +27,7 @@ class Application_Model_Store
     $mail->setBodyHtml($sBodyText);
     $mail->setFrom("ubuntu@mail.floresdebach33.com", "Administracion Flores");
     $mail->addTo("floresdebach33@yahoo.com");
-    $mail->addBcc("smartinez@svam.com");    
+    $mail->addBcc("simonm64@icloud.com");    
     $mail->setSubject($sSubject); 
 
     try{
